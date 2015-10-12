@@ -1,0 +1,37 @@
+{
+    "extension": 
+    {
+        "name": "troubleShoothing",
+        "version": "1.0.0",
+        "description": "An internal extension of Studio for the TroubleShooting",
+        "icon": "welcome.png",
+         "senders": [
+            {
+                "location": "studioToolbar",
+                "icon": "welcome.png",
+                "actionName": "getTroubleshootingPage",
+                "tips": "Troubleshooting",
+                    }
+        ],
+        "actions": [
+                   
+					{
+						"name": "getTroubleshootingPage",
+						"title": "Troubleshooting"
+						
+					},
+                    {
+						"name": "isWindows",
+						"title": "is windows"
+						
+					},
+                    {
+						"name": "goToTroubleShootingStep",
+						"title": "goToTroubleShootingStep"
+						
+					}
+                   
+        ],
+        "lifetime": "application_lifetime"
+    }
+}

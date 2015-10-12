@@ -1,0 +1,82 @@
+body {
+  padding-top: 51px;  
+}
+.text-center {
+  padding-top: 20px;
+}
+.col-xs-12 {
+    background-color:whitesmoke;
+    height: 700px;
+}
+#sidebar {
+  height: 100%;
+  padding-right: 0;
+  padding-top: 20px;
+}
+#sidebar .nav {
+  width: 95%;
+}
+#sidebar li {
+  border:0 #f2f2f2 solid;
+  border-bottom-width:1px;
+}
+#sidebar li.active{
+    text-decoration: none;
+    background-color: #eee;
+}
+
+/* collapsed sidebar styles */
+@media screen and (max-width: 767px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+  }
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -41.6%;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -41.6%;
+  }
+  .row-offcanvas-right.active {
+    right: 41.6%;
+  }
+  .row-offcanvas-left.active {
+    left: 41.6%;
+  }
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 41.6%;
+  }
+  #sidebar {
+    padding-top:0;
+  }
+}
+
+
+input[type=radio] {
+    display:none; 
+    margin:10px;
+}
+ 
+
+input[type=radio] + label {
+    display:inline-block;
+    margin:-2px;
+    padding: 23px 5px;
+    background-color: #e7e7e7;
+    border-color: #ddd;
+    width: 218px; 
+    text-align: center;
+    
+}
+
+input[type=radio]:checked + label { 
+   background-image: none;
+    background-color:#d0d0d0;
+}
