@@ -34,7 +34,7 @@ actions.isWindows = function isWindows()
 actions.getTroubleshootingPage = function getTroubleshootingPage()
 {
  
-    studio.extension.registerTabPage("./index.html", 'welcome.png');
+    studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
     studio.extension.openPageInTab('./index.html', 'TroubleShooting Page', false);
 }
 
@@ -61,7 +61,7 @@ actions.goToTroubleShootingStep = function goToTroubleShootingStep(message)
     studio.extension.storage.setItem("step",message.params.step);
     
     
-    studio.extension.registerTabPage("./index.html", 'welcome.png');
+    studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
     studio.extension.openPageInTab("./index.html", 'TroubleShooting Page', false);
     
     }
