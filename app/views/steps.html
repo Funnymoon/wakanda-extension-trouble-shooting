@@ -1,37 +1,32 @@
 <div class="page-container">
-  
-	<!-- top navbar -->
-    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
-       <div class="container">
-    	<div class="navbar-header" ng-init="toggle = false;">
-           <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav" ng-click="toggle = !toggle" >
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-             <span class="icon-bar"></span>
-           </button>
-           <a class="navbar-brand" > Steps to build {{currentType.name}} under {{currentType.os}}</a>
-    	</div>
-       </div>
-    </div>
-      
+
+  <!-- top navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
-      <div class="row row-offcanvas row-offcanvas-left" ng-class="{'active': toggle }">
-        
-        <!-- sidebar -->
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" >
-            <ul class="nav">
-              <li ng-repeat = "step in currentType.steps.__ENTITIES  | orderBy : 'number'" ng-class="{active : currentStep == step}" ><a ng-click = "setCurrentStep(step)">{{step.number}}- {{step.name}}</a></li>
-                         
-            </ul>
-        </div>
-  	
-        <!-- main area -->
-        
-        <div class="col-xs-12 col-sm-9" ng-if="descriptions.length > 0">
-          <h1 class="center-block" style="text-align: -webkit-center; background-color: wheat; padding : 30px">Step {{currentStep.number}} : {{currentStep.name}}</h1>
-          <h4 style="  background-color: wheat; padding : 30px"ng-repeat = "description in descriptions | orderBy : 'position'" ng-bind-html="description.text"></h4>
-          
-        </div><!-- /.col-xs-12 main -->
+      <div class="navbar-header" ng-init="toggle = false;">
+        <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target=".sidebar-nav" ng-click="toggle = !toggle" >
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" > Steps to build {{currentType.name}} under {{currentType.os}}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row row-offcanvas row-offcanvas-left" ng-class="{'active': toggle }">
+      <!-- sidebar -->
+      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" >
+        <ul class="nav">
+          <li ng-repeat = "step in currentType.steps.__ENTITIES  | orderBy : 'number'" ng-class="{active : currentStep == step}" ><a ng-click = "setCurrentStep(step)">{{step.number}}- {{step.name}}</a></li>
+        </ul>
+      </div>
+      <!-- main area -->
+      <main class="col-xs-12 col-sm-9" ng-if="descriptions.length > 0">
+        <h1 class="center-block" style="text-align: -webkit-center; background-color: wheat; padding : 30px">Step {{currentStep.number}} : {{currentStep.name}}</h1>
+        <h4 style="background-color: wheat; padding: 30px"ng-repeat = "description in descriptions | orderBy : 'position'" ng-bind-html="description.text"></h4>
+      </main><!-- /.col-xs-12 main -->
     </div><!--/.row-->
   </div><!--/.container-->
 </div><!--/.page-container-->
