@@ -59,7 +59,7 @@ actions.goToTroubleShootingStep = function goToTroubleShootingStep(message)
         
     studio.extension.storage.setItem("nickname",message.params.nickname);
     studio.extension.storage.setItem("step",message.params.step);
-    
+    studio.sendExtensionWebZoneCommand('troubleShooting','location.reload');
     
     studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
     studio.extension.openPageInTab("./index.html", 'TroubleShooting Page', false);
