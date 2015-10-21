@@ -1,7 +1,7 @@
 app.controller('homeCtrl', function($scope, AppType, $location) {
     $scope.appType = "";
     $scope.allType = [];
-    $scope.os = studio.sendCommand("troubleShooting.isWindows") ? "windows" : "mac";
+    $scope.os = (navigator.userAgent.indexOf('Mac OS X') != -1) ? "mac" : "windows";
     $scope.location = $location;
 
     AppType.getAllType().$promise.then(function(res) {

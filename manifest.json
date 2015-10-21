@@ -14,9 +14,6 @@
             "name": "getTroubleshootingPage",
             "title": "Troubleshooting"
         }, {
-            "name": "isWindows",
-            "title": "is windows"
-        }, {
             "name": "goToTroubleShootingStep",
             "title": "goToTroubleShootingStep"
         }, {

@@ -108,6 +108,19 @@ input[type=radio] + label {
   border-color: #ddd;
   width: 218px;
   text-align: center;
+  margin: 10px 0;
+}
+
+input[type=radio][disabled] + label {
+  opacity: 0.5;
+}
+
+.windows input[type=radio] + label {
+  border: 2px solid #91B509;
+}
+
+.mac input[type=radio] + label {
+  border: 2px solid #308FC7;
 }
 
 input[type=radio]:checked + label {

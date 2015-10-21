@@ -24,10 +24,6 @@ var utils = require("../wakanda-extension-mobile-core/utils");
 var actions;
 actions = {};
 
-actions.isWindows = function isWindows() {
-    return os.isWindows;
-}
-
 actions.getTroubleshootingPage = function getTroubleshootingPage() {
     studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
     studio.extension.openPageInTab('./index.html', 'TroubleShooting Page', false);
