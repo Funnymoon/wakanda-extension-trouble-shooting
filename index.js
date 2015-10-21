@@ -38,6 +38,9 @@ actions.getTroubleshootingDependencyCheck = function getTroubleshootingDependenc
     var type = message.params.type;
     var command = {
         cmd: step.command,
+        options: {
+            consoleSilentMode: true
+        },
         onmessage: function(msg) {
             studio.sendExtensionWebZoneCommand('troubleShooting','app.updateStepDependency',[type,step.number,true]);
         },
