@@ -12,15 +12,20 @@ app.controller('homeCtrl', function($scope, AppType, $location) {
                 var currentType = $scope.allType[i];
                 if (currentType.nickname == typeName && currentType.os == $scope.os) {
                     studio.extension.storage.setItem("nickname", null);
-                    $location.path("/steps/" + currentType.ID);
+                    $location.path("/steps/" + currentType.ID + "/1");
                 }
             }
         }
     });
 
     $scope.goToSteps = function() {
-        $scope.location.path("/steps/" + $scope.appType.ID);
+        $scope.location.path("/steps/" + $scope.appType.ID + "/1");
     };
+
+    $('#enabler').click(function(e){
+        e.preventDefault();
+        $('input[type="radio"][disabled]').prop("disabled", false);
+    });
     
 });
 app.factory('AppType', ['$resource', function($resource) {

@@ -11,13 +11,14 @@
                         </div>
                     </div>
                     <form class="row center-block" ng-submit="goToSteps()" name="formApp">
-                        <div ng-class="type.os" class="homeButton col-xs-12 col-sm-3" ng-repeat="type in allType | orderBy : 'name'" required>
+                        <div ng-class="type.os" class="homeButton col-xs-12 col-sm-6 col-md-4" ng-repeat="type in allType | orderBy : 'name'" required>
                             <input ng-disabled="(type.os == os ? false : true)" type="radio" ng-model="$parent.appType" id= "{{$index}}" name="appType" ng-value="type" required>
-                            <label for="{{$index}}"><img style="margin-right: 7px" height="40" src="./images/{{type.os}}-logo.png"><span>{{type.name}}</span></label>
+                            <label for="{{$index}}"><img style="margin-right: 7px" height="40" ng-src="./images/{{type.os}}-logo.png"><span>{{type.name}}</span></label>
                         </div>
                         <div class="col-xs-12">
                             <button type="submit" class="btn btn-default" style="margin: 20px 0;" ng-disabled="formApp.$invalid" >Proceed</button>
                         </div>
+                        <a id="enabler" href="#">enable all</a>
                     </form>
                 </section>
             </div>

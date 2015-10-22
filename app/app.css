@@ -6,6 +6,7 @@ body {
 
 body > .container {
   max-width: 96%;
+  position: relative;
 }
 
 .navbar-default .navbar-brand {
@@ -16,9 +17,48 @@ body > .container {
   padding-top: 20px;
 }
 
-main {
+.step {
   background-color: whitesmoke;
-  height: 700px;
+  padding-bottom: 10px;
+}
+
+.step::after {
+  content: "";
+  display: block;
+  overflow: hidden;
+}
+
+.step-title {
+  text-align: -webkit-center;
+  background-color: wheat;
+  padding: 20px 35px;
+}
+
+.step-description {
+  background-color: wheat;
+  padding: 15px 25px;
+  margin-bottom: 10px;
+}
+
+.step-description pre {
+  border: none;
+  border-radius: 0;
+  background: white;
+  margin: 10px 0;
+}
+
+.step-description code {
+  font: monospace;
+  color: black;
+}
+
+.step-description ul,
+.step-description ol {
+  padding-left: 20px;
+}
+
+.step-description li {
+  margin: 10px 0;
 }
 
 #sidebar {
@@ -131,6 +171,7 @@ input[type=radio]:checked + label {
 section.thumbnail {
   display: block;
   box-sizing: border-box;
+  margin: 0;
 }
 
 section.thumbnail .row {
@@ -149,9 +190,6 @@ section.thumbnail .row {
 }
 
 @media screen and (max-width: 768px) {
-  .homeButton {
-    margin-bottom: 30px;
-  }
   .homeButton input[type=radio] + label {
     padding: 20px 15px;
   }
@@ -245,4 +283,20 @@ section.thumbnail .row {
   background-color: green;
   -webkit-animation: none;
           animation: none; 
+}
+
+.home-link {
+  margin-top: 10px;
+}
+
+#enabler {
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+  color: #DDD;
+  text-decoration: none;
+}
+
+#enabler:hover {
+  color: #333;
 }

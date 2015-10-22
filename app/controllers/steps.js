@@ -30,7 +30,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
         }
     }
 
-    var currentStepPosition = 1;
+    var currentStepPosition = parseInt($routeParams.step);
     if (studio.extension.storage.getItem("step")) {
         currentStepPosition = studio.extension.storage.getItem("step");
         studio.extension.storage.setItem("step", null);
@@ -64,6 +64,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
 });
 
 app.updateStepDependency = function(type, step, result) {
+
     setTimeout(function(){
         if (result == true) {
             $('#sidebar a[data-id="'+step+'"]').addClass('success');
