@@ -26,7 +26,7 @@ actions = {};
 
 actions.getTroubleshootingPage = function getTroubleshootingPage() {
     studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
-    studio.extension.openPageInTab('./index.html', 'TroubleShooting Page', false);
+    studio.extension.openPageInTab('./index.html', 'TroubleShooting', false);
 }
 
 actions.getTroubleshootingDependencyCheck = function getTroubleshootingDependencyCheck(message) {
