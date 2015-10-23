@@ -38,13 +38,13 @@ actions.getTroubleshootingDependencyCheck = function getTroubleshootingDependenc
             consoleSilentMode: true
         },
         onmessage: function(msg) {
-            studio.sendExtensionWebZoneCommand('troubleShooting','app.updateStepDependency',[type,step.number,true]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,true]);
         },
         onerror: function(msg) {
-            studio.sendExtensionWebZoneCommand('troubleShooting','app.updateStepDependency',[type,step.number,false]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,false]);
         },
         onterminated: function(msg) {
-            studio.sendExtensionWebZoneCommand('troubleShooting','app.updateStepDependency',[type,step.number,null]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,null]);
         }
     };
     var worker = utils.executeAsyncCmd(command);
@@ -54,7 +54,7 @@ actions.goToTroubleShootingStep = function goToTroubleShootingStep(message) {
     if (message.params.nickname && message.params.step) {
         studio.extension.storage.setItem("nickname", message.params.nickname);
         studio.extension.storage.setItem("step", message.params.step);
-        studio.sendExtensionWebZoneCommand('troubleShooting', 'location.reload');
+        studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting', 'location.reload');
         studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
         studio.extension.openPageInTab("./index.html", 'TroubleShooting Page', false);
     }
