@@ -27,7 +27,7 @@
       <section class="step col-xs-12 col-sm-9" ng-if="descriptions.length > 0">
         <h1 class="step-title center-block">{{ ( currentType.steps.__ENTITIES.length > 1 ) ? "Step "+currentStep.number+": " : "" }}{{currentStep.name}}</h1>
         <div class="step-description" ng-repeat = "description in descriptions | orderBy : 'position'" ng-bind-html="description.text"></div>
-        <a ng-if="currentStep.number > 1" class="btn btn-default" href="#/steps/{{currentType.ID}}/{{currentStep.number-1}}" ng-disabled="formApp.$invalid" >Back</a>
+        <a ng-if="currentStep.number > 1" class="btn btn-default pull-left" href="#/steps/{{currentType.ID}}/{{currentStep.number-1}}" ng-disabled="formApp.$invalid" >Back</a>
         <a ng-if="currentStep.number < currentType.steps.__ENTITIES.length" class="btn btn-default pull-right" href="#/steps/{{currentType.ID}}/{{currentStep.number+1}}" ng-disabled="formApp.$invalid" >Proceed</a>
       </section><!-- /.col-xs-12 main -->
       <div class="home-link col-xs-offset-6 col-sm-offset-3 col-xs-6 col-sm-9">
