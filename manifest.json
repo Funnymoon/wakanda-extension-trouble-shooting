@@ -1,6 +1,6 @@
 {
     "extension": {
-        "name": "troubleShoothing",
+        "name": "wakanda-extension-trouble-shooting",
         "version": "1.0.0",
         "description": "An internal extension of Studio for the TroubleShooting",
         "icon": "welcome.png",

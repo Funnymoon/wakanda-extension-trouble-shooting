@@ -20,7 +20,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
                         step : step,
                         type: $scope.currentType,
                     };
-                    studio.sendCommand('troubleShooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
+                    studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
                 } else {
                     setTimeout(function(){
                         $('#sidebar a[data-id="'+step.number+'"]').addClass('loaded');
