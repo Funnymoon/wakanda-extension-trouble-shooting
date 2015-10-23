@@ -54,7 +54,7 @@ actions.goToTroubleShootingStep = function goToTroubleShootingStep(message) {
     if (message.params.nickname && message.params.step) {
         studio.extension.storage.setItem("nickname", message.params.nickname);
         studio.extension.storage.setItem("step", message.params.step);
-        studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting', 'location.reload');
+        studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','(function(){ window.location.reload(); })');
         studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
         studio.extension.openPageInTab("./index.html", 'TroubleShooting Page', false);
     }
