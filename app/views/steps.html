@@ -30,7 +30,7 @@
         <a ng-if="currentStep.number > 1" class="btn btn-default pull-left" ng-click="setCurrentStep(currentType.steps.__ENTITIES[currentStep.number-1])" ng-disabled="formApp.$invalid" >Back</a>
         <a ng-if="currentStep.number < currentType.steps.__ENTITIES.length" class="btn btn-default pull-right" ng-click="setCurrentStep(currentType.steps.__ENTITIES[currentStep.number+1])" ng-disabled="formApp.$invalid" >Proceed</a>
       </section><!-- /.col-xs-12 main -->
-      <div class="home-link col-xs-offset-6 col-sm-offset-3 col-xs-6 col-sm-9">
+      <div class="home-link col-sm-offset-3 col-xs-6 col-sm-9">
         <a href="#/home">Back to Home</a>
       </div>
     </div><!--/.row-->
