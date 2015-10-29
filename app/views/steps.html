@@ -17,20 +17,24 @@
   <div class="container">
     <div class="row row-offcanvas row-offcanvas-left" ng-class="{'active': toggle }">
       <!-- sidebar -->
-      <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation" >
+      <div class="col-xs-4 sidebar-offcanvas" id="sidebar" role="navigation" >
         <ul class="nav">
-          <li ng-repeat = "step in currentType.steps.__ENTITIES  | orderBy : 'number'" ng-class="{active : currentStep == step}" ><a class="loading" data-id="{{step.number}}" ng-click = "setCurrentStep(step)">{{ ( currentType.steps.__ENTITIES.length > 1 ) ? step.number+") " : "" }}{{step.name}}<div class="sk-cube-grid" ng-hide="{{ step.command.length < 1 }}" ><div class="sk-cube sk-cube1"></div><div class="sk-cube sk-cube2"></div><div class="sk-cube sk-cube3"></div><div class="sk-cube sk-cube4"></div><div class="sk-cube sk-cube5"></div><div class="sk-cube sk-cube6"></div><div class="sk-cube sk-cube7"></div><div class="sk-cube sk-cube8"></div><div class="sk-cube sk-cube9"></div></div>
+          <li ng-repeat = "step in currentType.steps.__ENTITIES  | orderBy : 'number'" ng-class="{active : currentStep == step}" ><a data-id="{{step.number}}" ng-click = "setCurrentStep(step)">{{ ( currentType.steps.__ENTITIES.length > 1 ) ? step.number+") " : "" }}{{step.name}} <span ng-hide="{{ step.command.length < 1 }}" class="label pull-right"></span>
           </a></li>
         </ul>
       </div>
       <!-- step area -->
-      <section class="step col-xs-12 col-sm-9" ng-if="descriptions.length > 0">
+      <section class="step col-xs-12 col-sm-8" ng-if="descriptions.length > 0">
         <h1 class="step-title center-block">{{ ( currentType.steps.__ENTITIES.length > 1 ) ? "Step "+currentStep.number+": " : "" }}{{currentStep.name}}</h1>
         <div class="step-description" ng-repeat = "description in descriptions | orderBy : 'position'" ng-bind-html="description.text"></div>
-        <a ng-if="currentStep.number > 1" class="btn btn-default pull-left" ng-click="setCurrentStep(currentType.steps.__ENTITIES[currentStep.number-1])" ng-disabled="formApp.$invalid" >Back</a>
-        <a ng-if="currentStep.number < currentType.steps.__ENTITIES.length" class="btn btn-default pull-right" ng-click="setCurrentStep(currentType.steps.__ENTITIES[currentStep.number+1])" ng-disabled="formApp.$invalid" >Proceed</a>
+        <div class="step-description">
+        <a ng-if="currentStep.number > 1" class="ffButton pull-left" ng-click="goPrevStep()" ng-disabled="formApp.$invalid" >Back</a>
+        <a ng-if="currentStep.number < currentType.steps.__ENTITIES.length" class="ffButton pull-right" ng-click="goNextStep()" ng-disabled="formApp.$invalid" >Next</a>
+        <a ng-if="currentStep.command" class="ffButton stepCheck locked pull-right" data-id="{{currentStep.number}}" ng-click="checkStep(currentStep)" ng-disabled="formApp.$invalid" >Check</a>
+        </div>
       </section><!-- /.col-xs-12 main -->
-      <div class="home-link col-sm-offset-3 col-xs-6 col-sm-9">
+      <div id="support-label" class="col-sm-offset-4 col-xs-12 col-sm-8 text-right" hidden>If you encounter any difficulty please contact <a href="mailto:wakanda@wakanda.org" target="_blank">wakanda@wakanda.org</a></div>
+      <div class="home-link col-sm-offset-4 col-xs-4 col-sm-8">
         <a href="#/home">Back to Home</a>
       </div>
     </div><!--/.row-->

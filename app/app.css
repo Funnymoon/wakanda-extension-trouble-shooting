@@ -2,6 +2,9 @@ body {
   padding: 51px 0 20px;
   background-color: #E7E7E7;
   min-width: 450px;
+  font-size: 13px;
+  line-height: 18px;
+  font-family: 'Roboto', arial, sans-serif;
 }
 
 body > .container {
@@ -18,7 +21,7 @@ body > .container {
 }
 
 .step {
-  background-color: whitesmoke;
+  background-color: transparent;
   padding-bottom: 10px;
 }
 
@@ -30,26 +33,32 @@ body > .container {
 
 .step-title {
   text-align: -webkit-center;
-  background-color: wheat;
+  background-color: white;
   padding: 20px 35px;
 }
 
 .step-description {
-  background-color: wheat;
+  background-color: white;
   padding: 15px 25px;
   margin-bottom: 10px;
+}
+
+.step-description:after {
+  content: "";
+  display: block;
+  clear: both;
 }
 
 .step-description pre {
   border: none;
   border-radius: 0;
-  background: white;
+  background: black;
   margin: 10px 0;
 }
 
 .step-description code {
   font: monospace;
-  color: black;
+  color: white;
 }
 
 .step-description ul,
@@ -89,7 +98,7 @@ body > .container {
   cursor: pointer;
   color: #333;
   position: relative;
-  padding-right: 25px;
+  padding: 10px 5px;
 }
 
 /* collapsed sidebar styles */
@@ -198,6 +207,19 @@ section.thumbnail .row {
   left: -7px;
 }
 
+#sidebar .nav a .label {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  line-height: 100%;
+  height: 100%;
+  display: block;
+  font-size: 11px;
+  padding-bottom: .4em;
+}
+
+#sidebar .nav a .label i {
+  font-style: normal;
+}
+
 @media screen and (max-width: 768px) {
   .homeButton input[type=radio] + label {
     padding: 20px 15px;
@@ -205,6 +227,15 @@ section.thumbnail .row {
   #sidebar .nav a {
     overflow: hidden;
     height: 40px;
+  }
+  #sidebar .nav a .label {
+    font-size: 13px;
+    width: 18px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #sidebar .nav a .label i {
+    display: none;
   }
 }
 
@@ -308,4 +339,36 @@ section.thumbnail .row {
 
 #enabler:hover {
   color: #333;
+}
+
+.ffButton {
+  display: inline-block;
+  box-sizing: border-box;
+  border: none;
+  padding: 0 15px;
+  background-color: #e3e5e6;
+  color: #555;
+  text-align: center;
+  height: 36px;
+  line-height: 36px;
+  margin: 5px 5px 0 0;
+  transition: all .15s ease-in;
+  min-width: 100px;
+}
+
+.ffButton.error {
+  color: white;
+  background-color: #c9302c;
+}
+
+.ffButton.success {
+  color: white;
+  background-color: #5cb85c;
+}
+
+.ffButton:hover {
+    text-decoration: none;
+    background-color: #a6aaab;
+    color: #fff;
+    cursor: pointer;
 }

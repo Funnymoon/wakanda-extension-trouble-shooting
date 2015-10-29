@@ -18,20 +18,21 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
         return -1;
     }
 
+    $scope.checkStep = function(step) {
+        $('.step .stepCheck[data-id="'+step.number+'"]').removeClass('locked');
+        checkDependencies([step]);
+        studio.sendCommand('wakanda-extension-mobile-core.checkDependencies');
+    }
+
     function checkDependencies(steps) {
         if (steps.length > 0) {
             steps.forEach(function(step){
                 if (step.command && step.command.length > 0) {
-                    $('#sidebar a[data-id="'+step.number+'"]').removeClass('success').removeClass('error');
                     var message = {
                         step : step,
                         type: $scope.currentType,
                     };
                     studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
-                } else {
-                    setTimeout(function(){
-                        $('#sidebar a[data-id="'+step.number+'"]').addClass('loaded');
-                    },500);
                 }
             })
         }
@@ -46,20 +47,38 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
     StepsFactory.getSteps({
         id: $routeParams.id
     }).$promise.then(function(res) {
+        
         $scope.currentType = res.__ENTITIES[0];
         $scope.currentStep = $scope.currentType.steps.__ENTITIES[findItem($scope.currentType.steps.__ENTITIES, "number", currentStepPosition)];
+
+        $scope.steps = [];
+        $scope.currentType.steps.__ENTITIES.forEach(function(element,id){
+            $scope.steps.push(element);
+        });
+        $scope.steps = $scope.steps.sort(function(a, b) {
+            return parseFloat(a.number) - parseFloat(b.number);
+        });
 
         StepsDescriptionFactory.getDescription({
             id: $scope.currentStep.ID
         }).$promise.then(function(res) {
             $scope.descriptions = res.__ENTITIES[0].description.__ENTITIES;
-            checkDependencies($scope.currentType.steps.__ENTITIES);
-            activateMunchkin();
         });
-        
+
+        checkDependencies($scope.steps);
+        activateMunchkin();
     });
 
+    $scope.goPrevStep = function() {
+        $scope.setCurrentStep($scope.steps[parseInt($scope.currentStep.number) - 2]);
+    };
+
+    $scope.goNextStep = function() {
+        $scope.setCurrentStep($scope.steps[parseInt($scope.currentStep.number)]);
+    };
+
     $scope.setCurrentStep = function(step) {
+        $('#support-label').hide();
         $scope.currentStep = step;
 
         StepsDescriptionFactory.getDescription({
@@ -67,20 +86,38 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
         }).$promise.then(function(res) {
             checkDependencies([$scope.currentStep]);
             $scope.descriptions = res.__ENTITIES[0].description.__ENTITIES;
+            $('.step .stepCheck[data-id="'+step.number+'"]').removeClass('success').removeClass('error').html('Check'); 
         });
     };
 });
 
 app.updateStepDependency = function(type, step, result) {
-
+    $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').removeClass('label-danger').addClass('label-default').html('...');
+    if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) { 
+        $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').removeClass('error').html('Checking...'); 
+    }
     setTimeout(function(){
         if (result == true) {
-            $('#sidebar a[data-id="'+step+'"]').addClass('success');
+            $('#sidebar a[data-id="'+step+'"] span.label').addClass('label-success').html('<i>Installed </i>✓');
+            if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) { 
+                $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Done! Check again');
+                    $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
+            }
         } else if (result == false) {
-            $('#sidebar a[data-id="'+step+'"]').addClass('error');        
+            $('#sidebar a[data-id="'+step+'"] span.label').addClass('label-danger').html('<i>Missing </i>!');  
+            if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) {
+                $('#support-label').show();
+                $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again');
+                    $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
+            }
         } else {
-            if (!$('#sidebar a[data-id="'+step+'"]').hasClass('success')) {
-                $('#sidebar a[data-id="'+step+'"]').addClass('error');
+            if (!$('#sidebar a[data-id="'+step+'"] span.label').hasClass('label-success')) {
+                $('#sidebar a[data-id="'+step+'"] span.label').addClass('label-danger').html('<i>Missing </i>!');
+                if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) {
+                    $('#support-label').show();
+                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again');
+                    $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
+                }
             }
         }
     },500);
