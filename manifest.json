@@ -4,12 +4,6 @@
         "version": "1.0.0",
         "description": "An internal extension of Studio for the TroubleShooting",
         "icon": "welcome.png",
-        "senders": [{
-            "location": "studioToolbar",
-            "icon": "welcome.png",
-            "actionName": "getTroubleshootingPage",
-            "tips": "Troubleshooting",
-        }],
         "actions": [{
             "name": "getTroubleshootingPage",
             "title": "Troubleshooting"
