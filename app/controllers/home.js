@@ -13,6 +13,7 @@ app.controller('homeCtrl', function($scope, AppType, $location) {
                 if (currentType.nickname == typeName && currentType.os == $scope.os) {
                     studio.extension.storage.setItem("nickname", null);
                     $location.path("/steps/" + currentType.ID + "/1");
+                    Munchkin.munchkinFunction('clickLink', { href: "/steps/" + currentType.ID + "/1"});
                 }
             }
         }
@@ -20,6 +21,7 @@ app.controller('homeCtrl', function($scope, AppType, $location) {
 
     $scope.goToSteps = function() {
         $scope.location.path("/steps/" + $scope.appType.ID + "/1");
+        Munchkin.munchkinFunction('clickLink', { href: "/steps/" + $scope.appType.ID + "/1"});
     };
 
     $('#enabler').click(function(e){

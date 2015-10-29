@@ -2,6 +2,13 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
 
     $scope.steps = [];
 
+    function activateMunchkin() {
+        $("a").on('click', function(event) {
+            var urlThatWasClicked = $(this).attr('href');
+            Munchkin.munchkinFunction('clickLink', { href: urlThatWasClicked});
+        });
+    }
+
     function findItem(arr, key, value) {
         for (var i = 0; i < arr.length; i++) {
             if (arr[i][key] === value) {
@@ -47,6 +54,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
         }).$promise.then(function(res) {
             $scope.descriptions = res.__ENTITIES[0].description.__ENTITIES;
             checkDependencies($scope.currentType.steps.__ENTITIES);
+            activateMunchkin();
         });
         
     });
