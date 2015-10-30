@@ -1,3 +1,5 @@
+stepsChecks = [];
+
 app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDescriptionFactory) {
 
     $scope.steps = [];
@@ -47,7 +49,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDe
     StepsFactory.getSteps({
         id: $routeParams.id
     }).$promise.then(function(res) {
-        
+        stepsChecks = [];
         $scope.currentType = res.__ENTITIES[0];
         $scope.currentStep = $scope.currentType.steps.__ENTITIES[findItem($scope.currentType.steps.__ENTITIES, "number", currentStepPosition)];
 
@@ -96,31 +98,29 @@ app.updateStepDependency = function(type, step, result) {
     if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) { 
         $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').removeClass('error').html('Checking...'); 
     }
-    setTimeout(function(){
-        if (result == true) {
-            $('#sidebar a[data-id="'+step+'"] span.label').addClass('label-success').html('<i>Installed </i>✓');
-            if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) { 
-                $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Done! Check again');
-                    $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
-            }
-        } else if (result == false) {
-            $('#sidebar a[data-id="'+step+'"] span.label').addClass('label-danger').html('<i>Missing </i>!');  
-            if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) {
-                $('#support-label').show();
-                $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again');
-                    $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
-            }
-        } else {
-            if (!$('#sidebar a[data-id="'+step+'"] span.label').hasClass('label-success')) {
-                $('#sidebar a[data-id="'+step+'"] span.label').addClass('label-danger').html('<i>Missing </i>!');
+    if (result == true || result == false) {
+        stepsChecks[step] = result;
+    } else {
+        if (stepsChecks[step] != true && stepsChecks[step] != false) {
+            stepsChecks[step] = false;
+        }
+        setTimeout(function(){
+            if (stepsChecks[step] == true) {
+                $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-danger').addClass('label-success').html('<i>Installed </i>✓');
+                if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) { 
+                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Done! Check again');
+                        $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
+                }
+            } else {
+                $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').addClass('label-danger').html('<i>Missing </i>!');  
                 if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) {
                     $('#support-label').show();
                     $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again');
                     $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
                 }
             }
-        }
-    },500);
+        },250);
+    }
 }
 
 app.factory('StepsFactory', ['$resource', function($resource) {

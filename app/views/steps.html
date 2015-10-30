@@ -27,10 +27,10 @@
       <section class="step col-xs-12 col-sm-8" ng-if="descriptions.length > 0">
         <h1 class="step-title center-block">{{ ( currentType.steps.__ENTITIES.length > 1 ) ? "Step "+currentStep.number+": " : "" }}{{currentStep.name}}</h1>
         <div class="step-description" ng-repeat = "description in descriptions | orderBy : 'position'" ng-bind-html="description.text"></div>
-        <div class="step-description">
-        <a ng-if="currentStep.number > 1" class="ffButton pull-left" ng-click="goPrevStep()" ng-disabled="formApp.$invalid" >Back</a>
-        <a ng-if="currentStep.number < currentType.steps.__ENTITIES.length" class="ffButton pull-right" ng-click="goNextStep()" ng-disabled="formApp.$invalid" >Next</a>
-        <a ng-if="currentStep.command" class="ffButton stepCheck locked pull-right" data-id="{{currentStep.number}}" ng-click="checkStep(currentStep)" ng-disabled="formApp.$invalid" >Check</a>
+        <div ng-hide="currentType.steps.__ENTITIES.length < 2" class="step-description">
+          <a ng-if="currentStep.number > 1" class="ffButton pull-left" ng-click="goPrevStep()" ng-disabled="formApp.$invalid" >Back</a>
+          <a ng-if="currentStep.number < currentType.steps.__ENTITIES.length" class="ffButton pull-right" ng-click="goNextStep()" ng-disabled="formApp.$invalid" >Next</a>
+          <a ng-if="currentStep.command" class="ffButton stepCheck locked pull-right" data-id="{{currentStep.number}}" ng-click="checkStep(currentStep)" ng-disabled="formApp.$invalid" >Check</a>
         </div>
       </section><!-- /.col-xs-12 main -->
       <div id="support-label" class="col-sm-offset-4 col-xs-12 col-sm-8 text-right" hidden>If you encounter any difficulty please contact <a href="mailto:wakanda@wakanda.org" target="_blank">wakanda@wakanda.org</a></div>
