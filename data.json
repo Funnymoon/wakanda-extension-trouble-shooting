@@ -1,0 +1,119 @@
+{
+    "applications": {
+        "ios-app": {
+            "steps": {
+                "windows": [{
+                    "name": "Oh noes!",
+                    "description": ["<h4>We are sorry</h4> <p>It's not possible to run a <strong>iOS mobile application</strong> on <strong>Windows</strong>.</p>"]
+                }],
+                "mac": [{
+                    "name": "Install Xcode",
+                    "command": "xcodebuild -version",
+                    "description": ["<h4>Installation</h4><p>Download <strong>Xcode</strong> from the <a target=\"_blank\" href=\"https://itunes.apple.com/us/app/xcode/id497799835?ls=1&mt=12\">Mac App Store</a> and install it.</p>", "<h4>What's this?</h4><p><strong>Xcode</strong> includes the official libraries you need to create and emulate apps for iPhone, iPad, Mac, and Apple Watch.</p>"]
+                }, {
+                    "name": "Install Node.js",
+                    "command": "node -v",
+                    "description": ["<h4>Installation</h4><p>Download <strong>Node.js</strong> from <a target=\"_blank\" href=\"https://nodejs.org\"> here</a> and install it.</p>", "<h4>Edit your environment variables</h4> <ol><li>Open with a text editor your <strong>~/.bash_profile</strong> configuration file</li><li>Add the following line:<pre><code>export PATH=/usr/local/bin:$PATH</code></pre></li></ol>"]
+                }, {
+                    "name": "Install Cordova",
+                    "command": "cordova -v",
+                    "description": ["<h4>What's this?</h4><p><strong>Apache Cordova</strong> is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript</p>", "<h4>Installation</h4><p>To Install <strong>Apache Cordova</strong> you can use <strong>npm</strong> (Node Package Manager provided with <strong>Node.js</strong>):</p> <ol><li>Open your terminal</li><li><div>Run this command:</div><pre><code>npm install -g cordova</code></pre></li></ol> <p><strong>NOTE</strong>: if <strong>NPM</strong> command <u>returns an error</u> run <strong>sudo npm install -g cordova</strong>"]
+                }, {
+                    "name": "Install Ionic",
+                    "command": "ionic -v",
+                    "description": ["<h4>What's this?</h4><p><strong>Ionic</strong> makes it incredibly easy to build beautiful and interactive mobile apps using <strong>HTML5</strong> and <strong>AngularJS</strong>.</p>", "<h4>Installation</h4><p>To Install <strong>Ionic</strong> you can use <strong>npm</strong> (Node Package Manager provided with <strong>Node.js</strong>):</p> <ol><li>Open your terminal</li><li><div>Run this command:</div><pre><code>npm install -g ionic</code></pre></li></ol> <p><strong>NOTE</strong>: if <strong>NPM</strong> command <u>returns an error</u> run <strong>sudo npm install -g ionic</strong>"]
+                }, {
+                    "name": "The End",
+                    "description": ["<h4>All right!</h4><p>If you have further questions contact us at <a href=\"mailto:wakanda@wakanda.org\">wakanda@wakanda.org</a></p>"]
+                }]
+            },
+            "name": "iOS",
+            "nickname": "ios-app",
+            "description": ""
+        },
+        "android-app": {
+            "steps": {
+                "windows": [{
+                    "name": "Install Node.js",
+                    "command": "node -v",
+                    "description": ["<h4>Installation</h4><p>Download <strong>Node.js</strong> from <a target=\"_blank\" href=\"https://nodejs.org\"> here</a> and install it.</p><p><strong>Restarting your Wakanda studio is required after this step.</strong></p>"]
+                }, {
+                    "name": "Install Cordova",
+                    "command": "cordova -v",
+                    "description": ["<h4>What's this?</h4><p><strong>Apache Cordova</strong> is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript</p>", "<h4>Installation</h4><p>To Install <strong>Apache Cordova</strong> you can use <strong>npm</strong> (Node Package Manager provided with <strong>Node.js</strong>):</p> <ol><li>Open your computer terminal (start -> run: cmd.exe)</li><li><div>Run this command:</div><pre><code>npm install -g cordova</code></pre></li></ol>"]
+                }, {
+                    "name": "Install Ionic",
+                    "command": "ionic -v",
+                    "description": ["<h4>What's this?</h4><p><strong>Ionic</strong> makes it incredibly easy to build beautiful and interactive mobile apps using <strong>HTML5</strong> and <strong>AngularJS</strong>.</p>", "<h4>Installation</h4><p>To Install <strong>Ionic</strong> you can use <strong>npm</strong> (Node Package Manager provided with <strong>Node.js</strong>):</p> <ol><li>Open your computer terminal (start -> run: cmd.exe)</li><li><div>Run this command:</div><pre><code>npm install -g ionic</code></pre></li></ol>"]
+                }, {
+                    "name": "Install Java JDK",
+                    "command": "where javac",
+                    "description": ["<h4>What's this?</h4><p><strong>Java Standard Edition Development Kit (JDK)</strong> is a development environment for building applications, applets, and components using the <strong>Java</strong> programming language.<br>The <strong>JDK</strong> includes tools useful for developing and testing programs written in the Java programming language and running on the Java platform. The JDK includes the <strong>JRE</strong>, so you do not have to download both separately.</p>", "<h4>Installation</h4><p>Download <strong>Java Platform JDK</strong> from <a target=\"_blank\" href=\"http://www.oracle.com/technetwork/java/javase/downloads/index.html\">here</a> and install it.</p>", "<h4>Edit your environment variables</h4> <ol><li>Add a new user variable named <strong>JAVA_HOME</strong> with value:<pre><code>C:\\Program Files\\Java\\<strong>jdk-version-folder</strong></code></pre></li><li>Edit your user variable named <strong>PATH</strong> adding at start the following text:<pre><code>%JAVA_HOME%\\bin;</code></pre></li></ol><p>you can find more info <a target=\"_blank\" href=\"https://java.com/en/download/help/path.xml\">here</a></p><p><strong>Restarting your Wakanda studio is required after this step.</strong></p>"]
+                }, {
+                    "name": "Install Apache Ant",
+                    "command": "ant -version",
+                    "description": ["<h4>What's this?</h4><p><strong>Apache Ant</strong> is a <strong>Java library</strong> and command-line tool whose mission is to drive processes described in build files as targets and extension points dependent upon each other. The main known usage of Ant is the build of Java applications. Ant supplies a number of built-in tasks allowing to compile, assemble, test and run Java applications. Ant can also be used effectively to build non Java applications, for instance <strong>C or C++</strong> applications. More generally, Ant can be used to pilot any type of process which can be described in terms of targets and tasks.</p>", "<h4>Installation</h4> <ol><li>Download <strong>Apache Ant</strong> binary files from <a target=\"_blank\" href=\"http://ant.apache.org/bindownload.cgi\">here</a></li><li>Unzip the folder and move it to your <strong>Program Files</strong> folder:<pre><code>C:\\Program Files\\apache-ant-1.9.6</pre></code></li></ol>", "<h4>Edit your environment variables</h4> <p>Edit your user variable named <strong>PATH</strong> adding at start the following text:<pre><code>C:\\Program Files\\apache-ant-1.9.6\\bin;</code></pre></li></ol><p>you can find more info <a target=\"_blank\" href=\"https://java.com/en/download/help/path.xml\">here</a></p><p><strong>Restarting your Wakanda studio is required after this step.</strong></p>"]
+                }, {
+                    "name": "Install Android SDK",
+                    "command": "adb version",
+                    "description": ["<h4>What's this?</h4>The <strong>Android Software Development Kit</strong> (SDK) includes a comprehensive set of development tools. These include a debugger, libraries, a handset emulator based on QEMU, documentation, sample code, and tutorials.</p>", "<h4>Installation</h4> <p>To install the <strong>Android SDK</strong>:</p><ol><li>Download the installer from <a target=\"_blank\" href=\"https://developer.android.com/sdk/index.html#Other\">here</a> and run it.</li><li>Run the SDK manager as suggested at the end of the installation process and install:<pre><code>Tools<br>Android 5.1.1 (API 22) or newer<br>Extras</code></pre></li></ol>", "<h4>Edit your environment variables</h4> <ol><li>Add a new user variable named <strong>ANDROID_HOME</strong> with value:<pre><code>% USERPROFILE%\\AppData\\Local\\Android\\android-sdk</code></pre></li><li>Edit your user variable named <strong>PATH</strong> adding at start the following text:<pre><code>%ANDROID_HOME%\\platform-tools;%ANDROID_HOME%\\tools;</code></pre></li></ol><p>you can find more info <a href=\"https://java.com/en/download/help/path.xml\">here</a></p><p><strong>Restarting your Wakanda studio is required after this step.</strong></p>", "<h4>Additional components</h4> <p>Intel HAXM greatly improves the performances of Android emulator. To run the installer open your command line and run:</p><pre><code>\"%ANDROID_HOME%\\extras\\intel\\Hardware_Accelerated_Execution_Manager\\intelhaxm-android.exe\"</code></pre><p>more info <a href=\"https://software.intel.com/en-us/android/articles/installation-instructions-for-intel-hardware-accelerated-execution-manager-windows\">here</a></p>"]
+                }, {
+                    "name": "Create AVD",
+                    "description": ["<h4>What's this?</h4>The <strong>AVD Manager</strong> provides a graphical user interface in which you can create and manage Android Virtual Devices (AVDs), which are required by the <strong>Android Emulator</strong>.</p>", "<h4>Configuration</h4> <p>To configure an emulator:</p><ol><li>Open <strong>Android AVD</strong> in your command line run:</p><pre><code>\"%ANDROID_HOME%\\AVD Manager.exe\"</code></pre></li><li>Click <strong>Create</strong> and create a new virtual machine</li></ol><p>more info <a href=\"http://developer.android.com/tools/help/avd-manager.html\">here</a></p>"]
+                }, {
+                    "name": "The End",
+                    "description": ["<h4>All right!</h4><p>If you have further questions contact us at <a href=\"mailto:wakanda@wakanda.org\">wakanda@wakanda.org</a></p>"]
+                }],
+                "mac": [{
+                    "name": "Install Node.js",
+                    "command": "node -v",
+                    "description": ["<h4>Installation</h4><p>Download <strong>Node.js</strong> from <a target=\"_blank\" href=\"https://nodejs.org\"> here</a> and install it.</p>", "<h4>Edit your environment variables</h4> <ol><li>Open with a text editor your <strong>~/.bash_profile</strong> configuration file</li><li>Add the following line:<pre><code>export PATH=/usr/local/bin:$PATH</code></pre></li></ol>"]
+                }, {
+                    "name": "Install Cordova",
+                    "command": "cordova -v",
+                    "description": ["<h4>What's this?</h4><p><strong>Apache Cordova</strong> is a set of device APIs that allow a mobile app developer to access native device function such as the camera or accelerometer from JavaScript</p>", "<h4>Installation</h4><p>To Install <strong>Apache Cordova</strong> you can use <strong>npm</strong> (Node Package Manager provided with <strong>Node.js</strong>):</p> <ol><li>Open your terminal</li><li><div>Run this command:</div><pre><code>npm install -g cordova</code></pre></li></ol> <p><strong>NOTE</strong>: if <strong>NPM</strong> command <u>returns an error</u> run <strong>sudo npm install -g cordova</strong>"]
+                }, {
+                    "name": "Install Ionic",
+                    "command": "ionic -v",
+                    "description": ["<h4>What's this?</h4><p><strong>Ionic</strong> makes it incredibly easy to build beautiful and interactive mobile apps using <strong>HTML5</strong> and <strong>AngularJS</strong>.</p>", "<h4>Installation</h4><p>To Install <strong>Ionic</strong> you can use <strong>npm</strong> (Node Package Manager provided with <strong>Node.js</strong>):</p> <ol><li>Open your terminal</li><li><div>Run this command:</div><pre><code>npm install -g ionic</code></pre></li></ol> <p><strong>NOTE</strong>: if <strong>NPM</strong> command <u>returns an error</u> run <strong>sudo npm install -g ionic</strong>"]
+                }, {
+                    "name": "Install Java JDK",
+                    "command": "which javac",
+                    "description": ["<h4>What's this?</h4><p><strong>Java Standard Edition Development Kit (JDK)</strong> is a development environment for building applications, applets, and components using the <strong>Java</strong> programming language.<br>The <strong>JDK</strong> includes tools useful for developing and testing programs written in the Java programming language and running on the Java platform. The JDK includes the <strong>JRE</strong>, so you do not have to download both separately.</p>", "<h4>Installation</h4><p>Download <strong>Java Platform JDK</strong> from <a target=\"_blank\" href=\"http://www.oracle.com/technetwork/java/javase/downloads/index.html\">here</a> and install it.</p>", "<h4>Edit your environment variables</h4> <ol><li>Open with a text editor your <strong>~/.bash_profile</strong> configuration file</li><li>Add the following lines:<pre><code>export JAVA_HOME=$(/usr/libexec/java_home)<br>export PATH=${JAVA_HOME}/bin:$PATH</code></pre></li></ol><p>you can find more info <a target=\"_blank\" href=\"https://java.com/en/download/help/path.xml\">here</a></p>"]
+                }, {
+                    "name": "Install Apache Ant",
+                    "command": "ant -version",
+                    "description": ["<h4>What's this?</h4><p><strong>Apache Ant</strong> is a <strong>Java library</strong> and command-line tool whose mission is to drive processes described in build files as targets and extension points dependent upon each other. The main known usage of Ant is the build of Java applications. Ant supplies a number of built-in tasks allowing to compile, assemble, test and run Java applications. Ant can also be used effectively to build non Java applications, for instance <strong>C or C++</strong> applications. More generally, Ant can be used to pilot any type of process which can be described in terms of targets and tasks.</p>", "<h4>Installation</h4><p>To install <strong>Apache Ant</strong> you can use <strong>brew</strong> in your terminal window:</p><pre><code>brew install ant</code></pre><p><strong>brew</strong> requires <strong>Xcode</strong> and can be installed using this command:</p><pre><code>ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"</code></pre>"]
+                }, {
+                    "name": "Install Android SDK",
+                    "command": "adb version",
+                    "description": ["<h4>What's this?</h4>The <strong>Android Software Development Kit</strong> (SDK) includes a comprehensive set of development tools. These include a debugger, libraries, a handset emulator based on QEMU, documentation, sample code, and tutorials.</p>", "<h4>Installation</h4><p>To install the <strong>Android SDK</strong>:<ol><li>Run <strong>brew</strong> in your terminal window:</p><pre><code>brew install android-sdk</code></pre><p><strong>brew</strong> requires <strong>Xcode</strong> and can be installed using this command:</p><pre><code>ruby -e \"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)\"</code></pre></li><li>Run in your terminal:<pre><code>android</code></pre></li><li>From the SDK manager install:<pre><code>Tools<br>Android 5.1.1 (API 22) or newer<br>Extras</code></pre></li></ol></ol>", "<h4>Edit your environment variables</h4> <ol><li>Open with a text editor your <strong>~/.bash_profile</strong> configuration file</li><li>Add the following line:<pre><code>export PATH=${PATH}:/usr/local/opt/android-sdk/platform-tools:/usr/local/opt/android-sdk/tools</code></pre></li></ol>", "<h4>Additional components</h4> <p>Intel HAXM greatly improves the performances of Android emulator. To run open the following folder:</p><pre><code>~/android-sdk-macosx/extras/intel/Hardware_Accelerated_Execution_Manager</code></pre><p>and run the dmg installer. More info <a target=\"_blank\" href=\"https://software.intel.com/en-us/android/articles/installation-instructions-for-intel-hardware-accelerated-execution-manager-windows\">here</a></p>"]
+                }, {
+                    "name": "Create AVD",
+                    "description": ["<h4>What's this?</h4>The <strong>AVD Manager</strong> provides a graphical user interface in which you can create and manage Android Virtual Devices (AVDs), which are required by the <strong>Android Emulator</strong>.</p>", "<h4>Configuration</h4> <p>To configure an emulator:</p><ol><li>Open <strong>Android AVD</strong> in your command line run:</p><pre><code>android avd</code></pre></li><li>Click <strong>Create</strong> and create a new virtual machine</li></ol><p>more info <a href=\"http://developer.android.com/tools/help/avd-manager.html\">here</a></p>"]
+                }, {
+                    "name": "The End",
+                    "description": ["<h4>All right!</h4><p>If you have further questions contact us at <a href=\"mailto:wakanda@wakanda.org\">wakanda@wakanda.org</a></p>"]
+                }]
+            },
+            "name": "Android",
+            "nickname": "android-app",
+            "description": ""
+        },
+        "wp-app": {
+            "steps": {
+                "windows": [{
+                    "name": "Oh noes!",
+                    "description": ["<h4>We are sorry</h4> <p>We are not supporting <strong>Windows Mobile applications</strong> for now.</p>"]
+                }],
+                "mac": [{
+                    "name": "Oh noes!",
+                    "description": ["<h4>We are sorry</h4> <p>We are not supporting <strong>Windows Mobile applications</strong> for now.</p>"]
+                }]
+            },
+            "name": "Windows Phone",
+            "nickname": "wp-app",
+            "description": ""
+        }
+    }
+}

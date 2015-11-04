@@ -32,19 +32,20 @@ actions.getTroubleshootingPage = function getTroubleshootingPage() {
 actions.getTroubleshootingDependencyCheck = function getTroubleshootingDependencyCheck(message) {
     var step = message.params.step;
     var type = message.params.type;
+    var cmd = message.params.command;
     var command = {
-        cmd: step.command,
+        cmd: cmd,
         options: {
             consoleSilentMode: true
         },
         onmessage: function(msg) {
-            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,true]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step,true]);
         },
         onerror: function(msg) {
-            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,false]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step,false]);
         },
         onterminated: function(msg) {
-            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,null]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step,null]);
         }
     };
     var worker = utils.executeAsyncCmd(command);

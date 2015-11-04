@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" > Steps to build {{currentType.name}} under {{currentType.os}}</a>
+        <a class="navbar-brand" > Steps to build {{currentType.name}} under {{currentOs}}</a>
       </div>
     </div>
   </div>
@@ -19,18 +19,18 @@
       <!-- sidebar -->
       <div class="col-xs-4 sidebar-offcanvas" id="sidebar" role="navigation" >
         <ul class="nav">
-          <li ng-repeat = "step in currentType.steps.__ENTITIES  | orderBy : 'number'" ng-class="{active : currentStep == step}" ><a data-id="{{step.number}}" ng-click = "setCurrentStep(step)">{{ ( currentType.steps.__ENTITIES.length > 1 ) ? step.number+") " : "" }}{{step.name}} <span ng-hide="{{ step.command.length < 1 }}" class="label pull-right"></span>
+          <li ng-repeat = "(key,step) in steps" ng-class="{active : currentStep == step}" ><a data-id="{{key}}" ng-click = "setCurrentStep(key)">{{ ( steps.length > 1 ) ? (key+1) + ") " : "" }}{{step.name}} <span ng-hide="{{ step.command.length < 1 }}" class="label pull-right"></span>
           </a></li>
         </ul>
       </div>
       <!-- step area -->
-      <section class="step col-xs-12 col-sm-8" ng-if="descriptions.length > 0">
-        <h1 class="step-title center-block">{{ ( currentType.steps.__ENTITIES.length > 1 ) ? "Step "+currentStep.number+": " : "" }}{{currentStep.name}}</h1>
-        <div class="step-description" ng-repeat = "description in descriptions | orderBy : 'position'" ng-bind-html="description.text"></div>
-        <div ng-hide="currentType.steps.__ENTITIES.length < 2" class="step-description">
-          <a ng-if="currentStep.number > 1" class="ffButton pull-left" ng-click="goPrevStep()" ng-disabled="formApp.$invalid" >Back</a>
-          <a ng-if="currentStep.number < currentType.steps.__ENTITIES.length" class="ffButton pull-right" ng-click="goNextStep()" ng-disabled="formApp.$invalid" >Next</a>
-          <a ng-if="currentStep.command" class="ffButton stepCheck locked pull-right" data-id="{{currentStep.number}}" ng-click="checkStep(currentStep)" ng-disabled="formApp.$invalid" >Check</a>
+      <section class="step col-xs-12 col-sm-8" ng-if="currentStep.description.length > 0">
+        <h1 class="step-title center-block">{{ ( steps.length > 1 ) ? "Step "+(currentStepPosition+1)+": " : "" }}{{currentStep.name}}</h1>
+        <div class="step-description" ng-repeat = "description in currentStep.description" ng-bind-html="description"></div>
+        <div ng-hide="steps.length < 2" class="step-description">
+          <a ng-if="currentStepPosition > 0" class="ffButton pull-left" ng-click="goPrevStep()" ng-disabled="formApp.$invalid" >Back</a>
+          <a ng-if="currentStepPosition < steps.length" class="ffButton pull-right" ng-click="goNextStep()" ng-disabled="formApp.$invalid" >Next</a>
+          <a ng-if="currentStep.command" class="ffButton stepCheck locked pull-right" data-id="{{currentStepPosition}}" ng-click="checkStep()" ng-disabled="formApp.$invalid" >Check</a>
         </div>
       </section><!-- /.col-xs-12 main -->
       <div id="support-label" class="col-sm-offset-4 col-xs-12 col-sm-8 text-right" hidden>If you encounter any difficulty please contact <a href="mailto:wakanda@wakanda.org" target="_blank">wakanda@wakanda.org</a></div>
