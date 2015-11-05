@@ -103,7 +103,7 @@ app.updateStepDependency = function(type, step, result) {
                 $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').addClass('label-danger').html('<i>Missing </i>');  
                 if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) {
                     $('#support-label').show();
-                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again').addClass('locked');
+                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('Not found! Check again').addClass('locked');
                 }
             }
         },150);
