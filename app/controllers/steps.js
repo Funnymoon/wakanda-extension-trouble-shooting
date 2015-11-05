@@ -1,95 +1,84 @@
 stepsChecks = [];
 
-app.controller('stepsCtrl', function($scope, $routeParams, StepsFactory, StepsDescriptionFactory) {
+app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
+
+    $scope.os = (navigator.userAgent.indexOf('Mac OS X') != -1) ? "mac" : "windows";
 
     $scope.steps = [];
 
     function activateMunchkin() {
-        $("a").on('click', function(event) {
-            var urlThatWasClicked = $(this).attr('href');
-            Munchkin.munchkinFunction('clickLink', { href: urlThatWasClicked});
-        });
+        Munchkin.munchkinFunction('clickLink', { href: window.location.hash });
     }
 
-    function findItem(arr, key, value) {
-        for (var i = 0; i < arr.length; i++) {
-            if (arr[i][key] === value) {
-                return (i);
-            }
-        }
-        return -1;
-    }
-
-    $scope.checkStep = function(step) {
-        $('.step .stepCheck[data-id="'+step.number+'"]').removeClass('locked');
-        checkDependencies([step]);
+    $scope.checkStep = function() {
+        $('.step .stepCheck[data-id="'+$scope.currentStepPosition+'"]').removeClass('locked');
+        checkDependencies([$scope.currentStep]);
         studio.sendCommand('wakanda-extension-mobile-core.checkDependencies');
     }
 
     function checkDependencies(steps) {
-        if (steps.length > 0) {
-            steps.forEach(function(step){
-                if (step.command && step.command.length > 0) {
-                    var message = {
-                        step : step,
-                        type: $scope.currentType,
-                    };
-                    studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
-                }
-            })
+        if (steps) {
+            switch (steps.length) {
+                case 0:
+                    break;
+                case 1:
+                    var step = steps[0];
+                    if (step.command && step.command.length > 0) {
+                        var message = {
+                            command: step.command,
+                            step : $scope.currentStepPosition,
+                            type: $scope.currentType.nickname,
+                        };
+                        studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
+                    }
+                    break;
+                default:
+                    steps.forEach(function(step,key){
+                        if (step.command && step.command.length > 0) {
+                            var message = {
+                                command: step.command,
+                                step : key,
+                                type: $scope.currentType.nickname,
+                            };
+                            studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
+                        }
+                    })
+                    break;
+            }
         }
     }
 
-    var currentStepPosition = parseInt($routeParams.step);
-    if (studio.extension.storage.getItem("step")) {
-        currentStepPosition = studio.extension.storage.getItem("step");
-        studio.extension.storage.setItem("step", null);
-    }
+    $scope.currentStepPosition = parseInt($routeParams.step);
 
-    StepsFactory.getSteps({
-        id: $routeParams.id
-    }).$promise.then(function(res) {
+    DataFactory.all().$promise.then(function(response) {
         stepsChecks = [];
-        $scope.currentType = res.__ENTITIES[0];
-        $scope.currentStep = $scope.currentType.steps.__ENTITIES[findItem($scope.currentType.steps.__ENTITIES, "number", currentStepPosition)];
-
-        $scope.steps = [];
-        $scope.currentType.steps.__ENTITIES.forEach(function(element,id){
-            $scope.steps.push(element);
-        });
-        $scope.steps = $scope.steps.sort(function(a, b) {
-            return parseFloat(a.number) - parseFloat(b.number);
-        });
-
-        StepsDescriptionFactory.getDescription({
-            id: $scope.currentStep.ID
-        }).$promise.then(function(res) {
-            $scope.descriptions = res.__ENTITIES[0].description.__ENTITIES;
-        });
+        $scope.currentOs = $routeParams.os;
+        $scope.currentType = response.applications[$routeParams.id];
+        $scope.steps = $scope.currentType.steps[$scope.currentOs];
+        $scope.currentStep = $scope.steps[$scope.currentStepPosition];
 
         checkDependencies($scope.steps);
-        activateMunchkin();
+        setTimeout(function(){
+            activateMunchkin();
+        },500);
     });
 
     $scope.goPrevStep = function() {
-        $scope.setCurrentStep($scope.steps[parseInt($scope.currentStep.number) - 2]);
+        $('.step .stepCheck').removeClass('success').removeClass('error').html('Check');
+        $scope.setCurrentStep($scope.currentStepPosition - 1);
     };
 
     $scope.goNextStep = function() {
-        $scope.setCurrentStep($scope.steps[parseInt($scope.currentStep.number)]);
+        $('.step .stepCheck').removeClass('success').removeClass('error').html('Check');
+        $scope.setCurrentStep($scope.currentStepPosition + 1);
     };
 
-    $scope.setCurrentStep = function(step) {
+    $scope.setCurrentStep = function(stepNumber) {
+        $scope.currentStepPosition = stepNumber;
         $('#support-label').hide();
-        $scope.currentStep = step;
-
-        StepsDescriptionFactory.getDescription({
-            id: $scope.currentStep.ID
-        }).$promise.then(function(res) {
-            checkDependencies([$scope.currentStep]);
-            $scope.descriptions = res.__ENTITIES[0].description.__ENTITIES;
-            $('.step .stepCheck[data-id="'+step.number+'"]').removeClass('success').removeClass('error').html('Check'); 
-        });
+        $scope.currentStep = $scope.steps[stepNumber];
+        checkDependencies([$scope.currentStep]);
+        $('.step .stepCheck[data-id="'+stepNumber+'"]').removeClass('success').removeClass('error').html('Check');
     };
 });
 
@@ -108,33 +97,15 @@ app.updateStepDependency = function(type, step, result) {
             if (stepsChecks[step] == true) {
                 $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-danger').addClass('label-success').html('<i>Installed </i>✓');
                 if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) { 
-                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Done! Check again');
-                        $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
+                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Done! Check again').addClass('locked');
                 }
             } else {
-                $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').addClass('label-danger').html('<i>Missing </i>!');  
+                $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').addClass('label-danger').html('<i>Missing </i>');  
                 if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) {
                     $('#support-label').show();
-                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again');
-                    $('.step .stepCheck[data-id="'+step+'"]').addClass('locked');
+                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again').addClass('locked');
                 }
             }
-        },250);
+        },150);
     }
 }
-
-app.factory('StepsFactory', ['$resource', function($resource) {
-    return $resource('http://troubleshooting.us.wak-apps.com/rest/ApplicationType/?$filter="ID =:id"&$expand=steps', null, {
-        'getSteps': {
-            method: 'GET'
-        }
-    });
-}]);
-
-app.factory('StepsDescriptionFactory', ['$resource', function($resource) {
-    return $resource('http://troubleshooting.us.wak-apps.com/rest/Step/?$filter="ID =:id"&$expand=description', null, {
-        'getDescription': {
-            method: 'GET'
-        }
-    });
-}]);

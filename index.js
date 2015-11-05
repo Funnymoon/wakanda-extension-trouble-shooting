@@ -20,31 +20,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-var utils = require("../wakanda-extension-mobile-core/utils");
+var utils = require("./utils");
 var actions;
 actions = {};
 
 actions.getTroubleshootingPage = function getTroubleshootingPage() {
     studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
-    studio.extension.openPageInTab('./index.html', 'TroubleShooting', false, 'window');
+    studio.extension.openPageInTab('./index.html', 'Troubleshooting', false, 'window');
 }
 
 actions.getTroubleshootingDependencyCheck = function getTroubleshootingDependencyCheck(message) {
     var step = message.params.step;
     var type = message.params.type;
+    var cmd = message.params.command;
     var command = {
-        cmd: step.command,
+        cmd: cmd,
         options: {
             consoleSilentMode: true
         },
         onmessage: function(msg) {
-            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,true]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step,true]);
         },
         onerror: function(msg) {
-            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,false]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step,false]);
         },
         onterminated: function(msg) {
-            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step.number,null]);
+            studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','app.updateStepDependency',[type,step,null]);
         }
     };
     var worker = utils.executeAsyncCmd(command);
@@ -56,7 +57,7 @@ actions.goToTroubleShootingStep = function goToTroubleShootingStep(message) {
         studio.extension.storage.setItem("step", message.params.step);
         studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','(function(){ window.location.reload(); })');
         studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
-        studio.extension.openPageInTab("./index.html", 'TroubleShooting Page', false, 'window');
+        studio.extension.openPageInTab("./index.html", 'Troubleshooting Page', false, 'window');
     }
 }
 

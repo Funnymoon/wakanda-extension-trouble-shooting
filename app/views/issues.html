@@ -1,0 +1,29 @@
+<div class="page-container">
+
+  <!-- top navbar -->
+  <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+      <div class="navbar-header" ng-init="toggle = false;">
+        <a class="navbar-brand" >{{ currentIssue.title }}</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <!-- step area -->
+      <section class="step col-xs-12" ng-if="currentIssue">
+        <h1 class="step-title center-block">Troubleshooting</h1>
+        <div class="step-issue step-description">
+            <h4>Issue</h4>
+            <h5>{{ currentIssue.title }}</h5>
+        </div>
+        <div class="step-description" ng-repeat="description in currentIssue.description" ng-bind-html="description"></div>
+      </section><!-- /.col-xs-12 main -->
+      <div id="support-label" class="col-xs-12 text-right">If you encounter any difficulties please contact <a href="mailto:support@wakanda.io" target="_blank">support@wakanda.io</a></div>
+      <div class="home-link col-xs-12">
+        <a href="#/home">Home</a>
+      </div>
+    </div><!--/.row-->
+  </div><!--/.container-->
+</div><!--/.page-container-->

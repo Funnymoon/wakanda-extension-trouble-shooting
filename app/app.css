@@ -61,6 +61,11 @@ body > .container {
   color: white;
 }
 
+.step-description code b {
+  color: #aaa;
+  font-weight: normal;
+}
+
 .step-description ul,
 .step-description ol {
   padding-left: 20px;
@@ -68,6 +73,13 @@ body > .container {
 
 .step-description li {
   margin: 10px 0;
+}
+
+.step-issue h5 {
+  font-size: 14px;
+  line-height: 120%;
+  font-weight: bold;
+  color: #555555;
 }
 
 #sidebar {
@@ -187,24 +199,9 @@ section.thumbnail .row {
   max-width: 100%;
 }
 
-.homeButton {
-  display: block;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.homeButton input[type=radio] + label {
-  display: block;
-  width: 100%;
-  position: relative;
-  overflow: hidden;
-}
-
-.homeButton img {
-  display: block;
-  position: absolute;
-  top: -7px;
-  left: -7px;
+section.thumbnail .row.center-block {
+  margin-top: 20px;
+  margin-bottom: 10px;
 }
 
 #sidebar .nav a .label {
@@ -220,8 +217,36 @@ section.thumbnail .row {
   font-style: normal;
 }
 
+.homeButton {
+  display: block;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.homeButton .title {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  padding: 15px 10px;
+  box-sizing: border-box;
+  height: auto;
+  color: black;
+}
+
+.homeButton .title:hover {
+  opacity: 0.6;
+}
+
+.issue a {
+  text-decoration: none;
+}
+
+ul.issue {
+  list-style: disc inside none;
+}
+
 @media screen and (max-width: 768px) {
-  .homeButton input[type=radio] + label {
+  .homeButton .title {
     padding: 20px 15px;
   }
   #sidebar .nav a {
@@ -327,18 +352,6 @@ section.thumbnail .row {
 
 .home-link {
   margin-top: 10px;
-}
-
-#enabler {
-  position: absolute;
-  bottom: 10px;
-  right: 30px;
-  color: #DDD;
-  text-decoration: none;
-}
-
-#enabler:hover {
-  color: #333;
 }
 
 .ffButton {
