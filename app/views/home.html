@@ -13,9 +13,11 @@
                         <div class="col-xs-12">
                             <h4>What do you want build?</h4>
                         </div>
-                        <div ng-click="goToStep(key)" class="{{value.nickname}} homeButton col-xs-12 col-sm-6 col-md-6" ng-repeat="(key, value) in data.applications">
-                            <img style="margin-right: 7px" height="40" ng-src="./images/{{value.os}}-logo.png">
-                            <div class="title ffButton">{{value.name}}</div>
+                        <div ng-click="goToStep(key)" class="{{value.nickname}} homeButton col-xs-12" ng-repeat="(key, value) in data.applications">
+                            <div class="title">
+                                <img style="margin-right: 7px" ng-src="./{{value.icon}}">
+                                <strong>{{value.name}}</strong>
+                            </div>
                         </div>
                     </div>
                     <div class="row center-block">

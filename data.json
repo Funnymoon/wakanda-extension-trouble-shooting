@@ -33,6 +33,7 @@
             },
             "name": "iOS",
             "nickname": "ios-app",
+            "icon": "images/iOS.png",
             "description": ""
         },
         "android-app": {
@@ -106,6 +107,7 @@
             },
             "name": "Android",
             "nickname": "android-app",
+            "icon": "images/android.png",
             "description": ""
         }
     },

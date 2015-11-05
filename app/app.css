@@ -230,13 +230,11 @@ section.thumbnail .row.center-block {
   padding: 15px 10px;
   box-sizing: border-box;
   height: auto;
+  color: black;
 }
 
-.homeButton img {
-  display: block;
-  position: absolute;
-  top: -7px;
-  left: -7px;
+.homeButton .title:hover {
+  opacity: 0.6;
 }
 
 .issue a {
