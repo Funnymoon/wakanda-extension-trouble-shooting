@@ -8,11 +8,22 @@ app.config(function($routeProvider, $locationProvider) {
     }).when('/steps/:id/:os/:step', {
         templateUrl: 'app/views/steps.html',
         controller: 'stepsCtrl'
+    }).when('/issues/:id', {
+        templateUrl: 'app/views/issues.html',
+        controller: 'issuesCtrl'
     }).otherwise({
         redirectTo: "/home"
     });
     
 });
+
+app.factory('DataFactory', ['$resource', function($resource) {
+    return $resource('./data.json', null, {
+        'all': {
+            method: 'GET'
+        }
+    });
+}]);
 
 app.goToStep = function(appName, stepNumber, localOs) {
     var os = (navigator.userAgent.indexOf('Mac OS X') != -1) ? "mac" : "windows";

@@ -57,7 +57,7 @@ actions.goToTroubleShootingStep = function goToTroubleShootingStep(message) {
         studio.extension.storage.setItem("step", message.params.step);
         studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','(function(){ window.location.reload(); })');
         studio.extension.registerTabPage("./index.html", './rsz_welcome.png');
-        studio.extension.openPageInTab("./index.html", 'TroubleShooting Page', false, 'window');
+        studio.extension.openPageInTab("./index.html", 'Troubleshooting Page', false, 'window');
     }
 }
 

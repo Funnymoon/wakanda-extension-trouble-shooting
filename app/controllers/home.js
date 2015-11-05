@@ -22,11 +22,3 @@ app.controller('homeCtrl', function($scope, DataFactory, $location) {
         app.goToStep(appName);
     };
 });
-
-app.factory('DataFactory', ['$resource', function($resource) {
-    return $resource('./data.json', null, {
-        'all': {
-            method: 'GET'
-        }
-    });
-}]);

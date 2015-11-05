@@ -6,15 +6,27 @@
                             <div class="caption">
                                 <h1>Troubleshooting</h1>
                                 <p>Troublehshoot the most common problems here.</p>
-                                <label>What do you want build?</label>
                             </div>
                         </div>
                     </div>
-
                     <div class="row center-block">
-                        <div ng-click="goToStep(key)" class="homeButton col-xs-12 col-sm-4 col-md-4" ng-repeat="(key, value) in data.applications">
-                            <img style="margin-right: 7px" height="40" ng-src="./images/{{value.os}}-logo.png"><span>{{value.name}}</span>
+                        <div class="col-xs-12">
+                            <h4>What do you want build?</h4>
                         </div>
+                        <div ng-click="goToStep(key)" class="{{value.nickname}} homeButton col-xs-12 col-sm-6 col-md-6" ng-repeat="(key, value) in data.applications">
+                            <img style="margin-right: 7px" height="40" ng-src="./images/{{value.os}}-logo.png">
+                            <div class="title ffButton">{{value.name}}</div>
+                        </div>
+                    </div>
+                    <div class="row center-block">
+                        <div class="col-xs-12">
+                            <h4>Do you need help with a specific issue?</h4>
+                        </div>
+                        <ul class="issue col-xs-12">
+                            <li ng-repeat="(key, value) in data.issues">
+                                <a href="#/issues/{{key}}" title="{{value.title}}">{{value.title}}</a>
+                            </li>
+                        </ul>
                     </div>
                 </section>
             </div>

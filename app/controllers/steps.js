@@ -109,11 +109,3 @@ app.updateStepDependency = function(type, step, result) {
         },150);
     }
 }
-
-app.factory('DataFactory', ['$resource', function($resource) {
-    return $resource('./data.json', null, {
-        'all': {
-            method: 'GET'
-        }
-    });
-}]);
