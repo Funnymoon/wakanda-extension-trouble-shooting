@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" > Steps to build {{currentType.name}} under {{currentOs}}</a>
+        <a class="navbar-brand" > Steps to build {{currentType.name}} under {{ (currentOs == 'mac') ? 'Macintosh' : 'Windows' }}</a>
       </div>
     </div>
   </div>
@@ -33,9 +33,9 @@
           <a ng-if="currentStep.command" class="ffButton stepCheck locked pull-right" data-id="{{currentStepPosition}}" ng-click="checkStep()" ng-disabled="formApp.$invalid" >Check</a>
         </div>
       </section><!-- /.col-xs-12 main -->
-      <div id="support-label" class="col-sm-offset-4 col-xs-12 col-sm-8 text-right" hidden>If you encounter any difficulty please contact <a href="mailto:wakanda@wakanda.org" target="_blank">wakanda@wakanda.org</a></div>
+      <div id="support-label" class="col-sm-offset-4 col-xs-12 col-sm-8 text-right" hidden>If you encounter any difficulties please contact <a href="mailto:wakanda@wakanda.org" target="_blank">wakanda@wakanda.org</a></div>
       <div class="home-link col-sm-offset-4 col-xs-4 col-sm-8">
-        <a href="#/home">Back to Home</a>
+        <a href="#/home">Home</a>
       </div>
     </div><!--/.row-->
   </div><!--/.container-->

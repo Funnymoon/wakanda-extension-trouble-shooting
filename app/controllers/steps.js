@@ -17,32 +17,34 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
     }
 
     function checkDependencies(steps) {
-        switch (steps.length) {
-            case 0:
-                break;
-            case 1:
-                var step = steps[0];
-                if (step.command && step.command.length > 0) {
-                    var message = {
-                        command: step.command,
-                        step : $scope.currentStepPosition,
-                        type: $scope.currentType.nickname,
-                    };
-                    studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
-                }
-                break;
-            default:
-                steps.forEach(function(step,key){
+        if (steps) {
+            switch (steps.length) {
+                case 0:
+                    break;
+                case 1:
+                    var step = steps[0];
                     if (step.command && step.command.length > 0) {
                         var message = {
                             command: step.command,
-                            step : key,
+                            step : $scope.currentStepPosition,
                             type: $scope.currentType.nickname,
                         };
                         studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
                     }
-                })
-                break;
+                    break;
+                default:
+                    steps.forEach(function(step,key){
+                        if (step.command && step.command.length > 0) {
+                            var message = {
+                                command: step.command,
+                                step : key,
+                                type: $scope.currentType.nickname,
+                            };
+                            studio.sendCommand('wakanda-extension-trouble-shooting.getTroubleshootingDependencyCheck.'+btoa(JSON.stringify(message))); 
+                        }
+                    })
+                    break;
+            }
         }
     }
 
@@ -56,7 +58,9 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
         $scope.currentStep = $scope.steps[$scope.currentStepPosition];
 
         checkDependencies($scope.steps);
-        activateMunchkin();
+        setTimeout(function(){
+            activateMunchkin();
+        },500);
     });
 
     $scope.goPrevStep = function() {
@@ -74,7 +78,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
         $('#support-label').hide();
         $scope.currentStep = $scope.steps[stepNumber];
         checkDependencies([$scope.currentStep]);
-        $('.step .stepCheck[data-id="'+step.number+'"]').removeClass('success').removeClass('error').html('Check');
+        $('.step .stepCheck[data-id="'+stepNumber+'"]').removeClass('success').removeClass('error').html('Check');
     };
 });
 
@@ -96,13 +100,13 @@ app.updateStepDependency = function(type, step, result) {
                     $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Done! Check again').addClass('locked');
                 }
             } else {
-                $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').addClass('label-danger').html('<i>Missing </i>!');  
+                $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').addClass('label-danger').html('<i>Missing </i>');  
                 if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) {
                     $('#support-label').show();
                     $('.step .stepCheck[data-id="'+step+'"]').removeClass('success').addClass('error').html('I ran into issues. Check again').addClass('locked');
                 }
             }
-        },250);
+        },150);
     }
 }
 
