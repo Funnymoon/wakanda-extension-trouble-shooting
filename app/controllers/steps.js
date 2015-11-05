@@ -7,14 +7,10 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
     $scope.steps = [];
 
     function activateMunchkin() {
-        $("a").on('click', function(event) {
-            var urlThatWasClicked = $(this).attr('href');
-            Munchkin.munchkinFunction('clickLink', { href: urlThatWasClicked});
-        });
+        Munchkin.munchkinFunction('clickLink', { href: window.location.hash });
     }
 
     $scope.checkStep = function() {
-
         $('.step .stepCheck[data-id="'+$scope.currentStepPosition+'"]').removeClass('locked');
         checkDependencies([$scope.currentStep]);
         studio.sendCommand('wakanda-extension-mobile-core.checkDependencies');
@@ -51,10 +47,6 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
     }
 
     $scope.currentStepPosition = parseInt($routeParams.step);
-    if (studio.extension.storage.getItem("step")) {
-        $scope.currentStepPosition = studio.extension.storage.getItem("step");
-        studio.extension.storage.setItem("step", null);
-    }
 
     DataFactory.all().$promise.then(function(response) {
         stepsChecks = [];

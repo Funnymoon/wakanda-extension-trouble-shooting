@@ -29,7 +29,7 @@
         <div class="step-description" ng-repeat = "description in currentStep.description" ng-bind-html="description"></div>
         <div ng-hide="steps.length < 2" class="step-description">
           <a ng-if="currentStepPosition > 0" class="ffButton pull-left" ng-click="goPrevStep()" ng-disabled="formApp.$invalid" >Back</a>
-          <a ng-if="currentStepPosition < steps.length" class="ffButton pull-right" ng-click="goNextStep()" ng-disabled="formApp.$invalid" >Next</a>
+          <a ng-if="currentStepPosition + 1 < steps.length" class="ffButton pull-right" ng-click="goNextStep()" ng-disabled="formApp.$invalid" >Next</a>
           <a ng-if="currentStep.command" class="ffButton stepCheck locked pull-right" data-id="{{currentStepPosition}}" ng-click="checkStep()" ng-disabled="formApp.$invalid" >Check</a>
         </div>
       </section><!-- /.col-xs-12 main -->

@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="row center-block">
-                        <div ng-click="goToSteps(key,os)" class="homeButton col-xs-12 col-sm-4 col-md-4" ng-repeat="(key, value) in data.applications">
+                        <div ng-click="goToStep(key)" class="homeButton col-xs-12 col-sm-4 col-md-4" ng-repeat="(key, value) in data.applications">
                             <img style="margin-right: 7px" height="40" ng-src="./images/{{value.os}}-logo.png"><span>{{value.name}}</span>
                         </div>
                     </div>

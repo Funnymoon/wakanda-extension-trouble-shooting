@@ -11,18 +11,16 @@ app.controller('homeCtrl', function($scope, DataFactory, $location) {
                 var currentType = $scope.data.applications[i];
                 if (currentType.nickname == typeName && currentType.os == $scope.os) {
                     studio.extension.storage.setItem("nickname", null);
-                    $location.path("/steps/" + currentType.nickname + "/"+ currentType.nickname + "/1");
-                    Munchkin.munchkinFunction('clickLink', { href: "/steps/" + currentType.nickname + "/" + $scope.appType.os + "/1"});
+                    $location.path("/steps/" + currentType.nickname + "/"+ $scope.appType.os + "/0");
+                    Munchkin.munchkinFunction('clickLink', { href: "/steps/" + currentType.nickname + "/" + $scope.appType.os + "/0"});
                 }
             }
         }
     });
-
-    $scope.goToSteps = function(appName,localOs) {
-        $scope.location.path("/steps/" + appName + "/" + localOs + "/1");
-        Munchkin.munchkinFunction('clickLink', { href: "/steps/" + appName + "/" + localOs + "/1"});
-    };
     
+    $scope.goToStep = function(appName) {
+        app.goToStep(appName);
+    };
 });
 
 app.factory('DataFactory', ['$resource', function($resource) {
