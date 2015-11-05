@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-var utils = require("../wakanda-extension-mobile-core/utils");
+var utils = require("./utils");
 var actions;
 actions = {};
 
