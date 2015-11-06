@@ -64,12 +64,10 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
     });
 
     $scope.goPrevStep = function() {
-        $('.step .stepCheck').removeClass('success').removeClass('error').html('Check');
         $scope.setCurrentStep($scope.currentStepPosition - 1);
     };
 
     $scope.goNextStep = function() {
-        $('.step .stepCheck').removeClass('success').removeClass('error').html('Check');
         $scope.setCurrentStep($scope.currentStepPosition + 1);
     };
 
@@ -78,7 +76,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
         $('#support-label').hide();
         $scope.currentStep = $scope.steps[stepNumber];
         checkDependencies([$scope.currentStep]);
-        $('.step .stepCheck[data-id="'+stepNumber+'"]').removeClass('success').removeClass('error').html('Check');
+        $('.step .stepCheck').removeClass('success').removeClass('error').html('Check');
     };
 });
 
