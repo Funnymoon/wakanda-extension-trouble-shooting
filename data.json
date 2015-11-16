@@ -129,5 +129,10 @@
             "<h4>Example</h4><p>In the Terminal run</p><div><pre><code>npm config set proxy http:<b>//proxy.company.com:8080</b>\nnpm config set https-proxy http:<b>//proxy.company.com:8080</b></code></pre></div><p>If you are working behind a proxy in a \"windows\" domain, add the domain name into the proxy url:</p><div><pre><code>npm config set proxy http:<b>//domain%5Cuser:password@proxy.company.com:8080</b>\nnpm config set https-proxy http:<b>//domain%5Cuser:password@proxy.company.com:8080</b></code></pre></div><p>You need to encode the backslash as an http uri string: <strong>%5C</strong></p>",
             "<h4>Additional Information</h4><p>It could also be necessary to point the npm registry to the http source:</p><div><pre><code>npm config set registry \"http://registry.npmjs.org\"\nnpm config set strict-ssl false</code></pre></div>"
         ]        
+    },{
+        "title": "The iOS emulator displays a blank white screen (OS X El Capitan and Xcode 7)",
+        "description": [
+            "<h4>Solution</h4><p>Launch Xcode, open its Preferences then download the 'iOS 8.4 Simulator' component from the Downloads tab.</p><p>Once done, open the Devices window of Xcode then delete all the '9.0' simulators.</p><p>Additionally, you may need to run the following command within your mobile application folder:</p><div><pre><code>ionic state reset</code></pre></div>"
+        ]        
     }]
 }
