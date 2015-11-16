@@ -95,7 +95,7 @@ app.updateStepDependency = function(type, step, result) {
             if (stepsChecks[step] == true) {
                 $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-danger').addClass('label-success').html('<i>Installed </i>✓');
                 if ($('.step .stepCheck[data-id="'+step+'"]').length > 0 && !$('.step .stepCheck[data-id="'+step+'"]').hasClass('locked')) { 
-                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Done! Check again').addClass('locked');
+                    $('.step .stepCheck[data-id="'+step+'"]').removeClass('error').addClass('success').html('Checked. Check again').addClass('locked');
                 }
             } else {
                 $('#sidebar a[data-id="'+step+'"] span.label').removeClass('label-success').addClass('label-danger').html('<i>Missing </i>');  
