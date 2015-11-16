@@ -2,7 +2,7 @@
     "extension": {
         "name": "wakanda-extension-trouble-shooting",
         "version": "1.0.0",
-        "description": "An internal extension of Studio for the TroubleShooting",
+        "description": "An internal extension to help with troubleshooting in Wakanda Studio.",
         "icon": "welcome.png",
         "actions": [{
             "name": "getTroubleshootingPage",
