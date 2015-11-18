@@ -215,6 +215,10 @@ ul.issue li {
   color: #212121;
 }
 
+.step ol {
+  font-size: 14px;
+}
+
 .step-title {
   text-align: -webkit-center;
   background-color: white;
