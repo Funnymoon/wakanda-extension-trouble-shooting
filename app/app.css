@@ -12,6 +12,14 @@ body > .container {
   position: relative;
 }
 
+a {
+  color: #14a1c8;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
 #home-intro {
   background: url('../images/bg.png') no-repeat center center;
   background-size: auto 100%;
@@ -168,8 +176,6 @@ ul.issue {
   font-size: 15px;
   line-height: 140%;
   padding: 4px 0 0;
-  color: #14a1c8;
-  text-decoration: none;
 }
 
 ul.issue li {
