@@ -17,11 +17,11 @@
                 }, {
                     "name": "Install Node.js",
                     "command": "node -v",
-                    "description": ["<h4>What is Node.js?</h4><p><strong>Node.js</strong> is a <strong>JavaScript</strong> runtime built on Chrome's V8 JavaScript engine used to quickly retrieve tools and libraries through its package ecosystem, <strong>npm</strong>.</p>", "<h4>Installation</h4><p><a target=\"_blank\" href=\"https://nodejs.org\">Download <strong>Node.js</strong></a> and install it.</p>", "<h4>Configuration</h4><p>To configure <strong>Node.js</strong>:</p><ol><li>Open your <strong>~/.bash_profile</strong> configuration file with a text editor.</li><li><div>Add the following line:</div><pre><code>export PATH=/usr/local/bin:$PATH</code></pre></li></ol>"]
+                    "description": ["<h4>What is Node.js?</h4><p><strong>Node.js</strong> is a <strong>JavaScript</strong> runtime built on Chrome's V8 JavaScript engine that includes the <strong>npm</strong> package manager.</p>", "<h4>Installation</h4><p><a target=\"_blank\" href=\"https://nodejs.org\">Download <strong>Node.js</strong></a> and install it.</p>", "<h4>Configuration</h4><p>To configure <strong>Node.js</strong>:</p><ol><li>Open your <strong>~/.bash_profile</strong> configuration file with a text editor.</li><li><div>Add the following line:</div><pre><code>export PATH=/usr/local/bin:$PATH</code></pre></li></ol>"]
                 }, {
                     "name": "Install Cordova",
                     "command": "cordova -v",
-                    "description": ["<h4>What is Cordova?</h4><p><strong>Apache Cordova</strong> is a set of device APIs that allow you to access native device functions, such as the camera and accelerometer, using JavaScript.</p>", "<h4>Installation</h4><p>To install <strong>Apache Cordova</strong>, use the <strong>Node Package Manager (npm)</strong> that is provided by Node.js:</p> <ol><li>Open the Terminal (start -> run: cmd.exe).</li><li><div>Run this command:</div><pre><code>npm install -g cordova</code></pre></li></ol>"]
+                    "description": ["<h4>What is Cordova?</h4><p><strong>Apache Cordova</strong> is a set of device APIs that allow you to access native device functions, such as the camera and accelerometer, using JavaScript.</p>", "<h4>Installation</h4><p>To install <strong>Apache Cordova</strong>, use the <strong>Node Package Manager (npm)</strong> that is provided by Node.js:</p> <ol><li>Open the Terminal.</li><li><div>Run this command:</div><pre><code>npm install -g cordova</code></pre></li></ol>"]
                 }, {
                     "name": "Install Ionic",
                     "command": "ionic -v",
@@ -41,7 +41,7 @@
                 "windows": [{
                     "name": "Install Node.js",
                     "command": "node -v",
-                    "description": ["<h4>What is Node.js?</h4><p><strong>Node.js</strong> is a <strong>JavaScript</strong> runtime built on Chrome's V8 JavaScript engine used to quickly retrieve tools and libraries through its package ecosystem, <strong>npm</strong>.</p>", "<h4>Installation</h4><p><a target=\"_blank\" href=\"https://nodejs.org\">Download <strong>Node.js</strong></a> and install it.</p><p><strong>You must restart Wakanda Studio after completing this step.</strong></p>"]
+                    "description": ["<h4>What is Node.js?</h4><p><strong>Node.js</strong> is a <strong>JavaScript</strong> runtime built on Chrome's V8 JavaScript engine that includes the <strong>npm</strong> package manager.</p>", "<h4>Installation</h4><p><a target=\"_blank\" href=\"https://nodejs.org\">Download <strong>Node.js</strong></a> and install it.</p><p><strong>You must restart Wakanda Studio after completing this step.</strong></p>"]
                 }, {
                     "name": "Install Cordova",
                     "command": "cordova -v",
@@ -76,11 +76,11 @@
                 }, {
                     "name": "Install Node.js",
                     "command": "node -v",
-                    "description": ["<h4>What is Node.js?</h4><p><strong>Node.js</strong> is a <strong>JavaScript</strong> runtime built on Chrome's V8 JavaScript engine used to quickly retrieve tools and libraries through its package ecosystem, <strong>npm</strong>.</p>", "<h4>Installation</h4><p><a target=\"_blank\" href=\"https://nodejs.org\">Download <strong>Node.js</strong></a> and install it.</p>", "<h4>Configuration</h4><p>To configure <strong>Node.js</strong>:</p><ol><li>Open your <strong>~/.bash_profile</strong> configuration file with a text editor.</li><li><div>Add the following line:</div><pre><code>export PATH=/usr/local/bin:$PATH</code></pre></li></ol>"]
+                    "description": ["<h4>What is Node.js?</h4><p><strong>Node.js</strong> is a <strong>JavaScript</strong> runtime built on Chrome's V8 JavaScript engine that includes the <strong>npm</strong> package manager.</p>", "<h4>Installation</h4><p><a target=\"_blank\" href=\"https://nodejs.org\">Download <strong>Node.js</strong></a> and install it.</p>", "<h4>Configuration</h4><p>To configure <strong>Node.js</strong>:</p><ol><li>Open your <strong>~/.bash_profile</strong> configuration file with a text editor.</li><li><div>Add the following line:</div><pre><code>export PATH=/usr/local/bin:$PATH</code></pre></li></ol>"]
                 }, {
                     "name": "Install Cordova",
                     "command": "cordova -v",
-                    "description": ["<h4>What is Cordova?</h4><p><strong>Apache Cordova</strong> is a set of device APIs that allow you to access native device functions, such as the camera or accelerometer, using JavaScript.</p>", "<h4>Installation</h4><p>To install <strong>Apache Cordova</strong>, use the <strong>Node Package Manager (npm)</strong> that is provided by Node.js:</p> <ol><li>Open the Terminal (start -> run: cmd.exe).</li><li><div>Run this command:</div><pre><code>npm install -g cordova</code></pre></li></ol>"]
+                    "description": ["<h4>What is Cordova?</h4><p><strong>Apache Cordova</strong> is a set of device APIs that allow you to access native device functions, such as the camera or accelerometer, using JavaScript.</p>", "<h4>Installation</h4><p>To install <strong>Apache Cordova</strong>, use the <strong>Node Package Manager (npm)</strong> that is provided by Node.js:</p> <ol><li>Open the Terminal.</li><li><div>Run this command:</div><pre><code>npm install -g cordova</code></pre></li></ol>"]
                 }, {
                     "name": "Install Ionic",
                     "command": "ionic -v",
