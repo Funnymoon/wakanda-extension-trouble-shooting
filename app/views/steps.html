@@ -6,6 +6,7 @@
       <div class="navbar-header" ng-init="toggle = false;">
         <a class="navbar-brand" > Steps to build {{currentType.name}} on {{ (currentOs == 'mac') ? 'Macintosh' : 'Windows' }}</a>
       </div>
+      <a id="home-link" href="#/home" class="navbar-text navbar-right"><span>◀</span>Home</a>
     </div>
   </div>
 
@@ -13,7 +14,7 @@
     <!-- sidebar -->
     <div class="col-xs-4 sidebar-offcanvas" id="sidebar" role="navigation" >
       <ul class="nav">
-        <li ng-repeat = "(key,step) in steps" ng-class="{active : currentStep == step}" ><a data-id="{{key}}" ng-click = "setCurrentStep(key)">{{ ( steps.length > 1 ) ? (key+1) + ". " : "" }}{{step.name}} <span ng-hide="{{ step.command.length < 1 }}" class="label pull-right"></span>
+        <li ng-repeat = "(key,step) in steps" ng-class="{active : currentStep == step}" ><a data-id="{{key}}" ng-click = "setCurrentStep(key)">{{ ( steps.length > 1 ) ? (key+1) + ") " : "" }}{{step.name}} <span ng-hide="{{ step.command.length < 1 }}" class="label pull-right"></span>
         </a></li>
       </ul>
     </div>
@@ -28,8 +29,5 @@
       </div>
     </section><!-- /.col-xs-12 main -->
     <div id="support-label" class="col-sm-offset-4 col-xs-12 col-sm-8 text-right" hidden>If you encounter any difficulties, please contact us at <a href="mailto:support@wakanda.io" target="_blank">support@wakanda.io</a>.</div>
-    <div class="home-link col-sm-offset-4 col-xs-4 col-sm-8">
-      <a href="#/home">Home</a>
-    </div>
   </div><!--/.row-->
 </div><!--/.page-container-->

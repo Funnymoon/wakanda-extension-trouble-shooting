@@ -1,15 +1,186 @@
 body {
-  padding: 51px 0 20px;
-  background-color: #E7E7E7;
+  padding: 30px 0 50px;
+  background-color: #f3f3f3;
   min-width: 450px;
   font-size: 13px;
   line-height: 18px;
-  font-family: 'Roboto', arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
 }
 
 body > .container {
   max-width: 96%;
   position: relative;
+}
+
+a {
+  color: #14a1c8;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+#home-intro {
+  background: url('../images/bg.png') no-repeat center center;
+  background-size: auto 100%;
+  border: 1px solid #e2e1dd;
+  border-radius: 2px;
+  margin-bottom: 17px;
+  box-sizing: border-box;
+  padding: 45px 35px;
+  text-align: center;
+  display: block;
+}
+
+#home-intro h1 {
+  padding: 3px 10px 3px;
+  font-size: 42px;
+  line-height: 120%;
+  background: #ffb800;
+  color: white;
+  display: inline-block;
+  font-weight: normal;
+  margin-top: 0;
+}
+
+#home-intro p {
+  font-size: 20px;
+  line-height: 140%;
+  font-weight: 400;
+  color: #555555;
+  margin-bottom: 0;
+}
+
+#home-content h2 {
+  box-sizing: border-box;
+  padding: 10px 0 20px;
+  position: relative;
+  display: inline-block;
+  margin: 0 auto 25px;
+  text-align: center;
+  font-size: 28px;
+  line-height: 120%;
+  color: #555;
+}
+
+#home-content h2::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  margin: 0 auto;
+  height: 1px;
+  background: #ffb800;
+  max-width: 100%;
+  width: 185px;
+}
+
+.homeButton {
+  text-align: center;
+  display: block;
+  box-sizing: border-box;
+  cursor: pointer;
+  padding: 40px 10px 35px;
+  border-radius: 10px;
+  min-height: 200px;
+  margin: 10px auto;
+}
+
+.homeButton figure {
+  display: block;
+  margin: 0 auto;
+}
+
+.homeButton span {
+  display: block;
+  color: #e1e1e1;
+  font-size: 21px;
+  line-height: 120%;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+
+.ios-app .homeButton {
+  background: #4e4e4e;
+  margin-right: 0px;
+}
+
+.ios-app .homeButton figure {
+  background: url('../images/ios.png');
+  height: 91px;
+  width: 91px;
+  text-indent: -9999px;
+}
+
+.ios-app .homeButton:hover figure {
+  background: url('../images/iosHover.png');
+}
+
+.android-app .homeButton {
+  background: #45b29d;
+  margin-left: 0px;
+  text-transform: uppercase;
+}
+
+.android-app .homeButton figure {
+  background: url('../images/android.png');
+  height: 93px;
+  width: 79px;
+  text-indent: -9999px;  
+}
+
+.android-app .homeButton:hover figure {
+  background: url('../images/androidHover.png');
+}
+
+.android-app .homeButton span {
+  color: #b7efe4;
+}
+
+.homeButton:hover span {
+  color: white;
+}
+
+#homeButtonRow {
+  width: 100%;
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #sidebar .nav a {
+    overflow: hidden;
+    height: 40px;
+  }
+  #sidebar .nav a .label {
+    font-size: 13px;
+    width: 18px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  #sidebar .nav a .label i {
+    display: none;
+  }
+}
+
+ul.issue {
+  list-style: disc inside none;
+  font-size: 8px;
+  margin-bottom: 40px;
+  padding: 0 40px;
+}
+
+.issue a {
+  display: block;
+  font-size: 15px;
+  line-height: 140%;
+  padding: 4px 0 0;
+}
+
+ul.issue li {
+  line-height: 100%;
+  margin-bottom: 2px;
 }
 
 .navbar-default .navbar-brand {
@@ -23,6 +194,7 @@ body > .container {
 .step {
   background-color: transparent;
   padding-bottom: 10px;
+  margin-top: 20px;
 }
 
 .step::after {
@@ -31,14 +203,38 @@ body > .container {
   overflow: hidden;
 }
 
+.step h1 {
+  font-size: 32px;
+  color: #555;
+  font-weight: 300;
+}
+
+.step h4 {
+  font-size: 16px;
+  color: #212121;
+  font-weight: 600;
+}
+
+.step p {
+  font-size: 14px;
+  line-height: 24px;
+  color: #212121;
+}
+
+.step ol {
+  font-size: 14px;
+}
+
 .step-title {
   text-align: -webkit-center;
   background-color: white;
   padding: 20px 35px;
+  border: 1px solid #e4e4e4;
 }
 
 .step-description {
   background-color: white;
+  border: 1px solid #e4e4e4;
   padding: 15px 25px;
   margin-bottom: 10px;
 }
@@ -86,6 +282,7 @@ body > .container {
   height: 100%;
   padding-right: 0;
   padding-top: 20px;
+  margin-top: 20px;
 }
 
 #sidebar .nav {
@@ -93,13 +290,12 @@ body > .container {
 }
 
 #sidebar li {
-  border: 0 #f2f2f2 solid;
-  border-bottom-width: 1px;
+  border-bottom: 1px solid #e4e4e4;
 }
 
 #sidebar li.active {
   text-decoration: none;
-  background-color: #eee;
+  background-color: #fff;
 }
 
 #sidebar li.active a::after {
@@ -111,6 +307,10 @@ body > .container {
   color: #333;
   position: relative;
   padding: 10px 5px;
+}
+
+#sidebar .nav a:hover {
+  background: #fafafa;
 }
 
 /* collapsed sidebar styles */
@@ -140,7 +340,7 @@ body > .container {
     width: 41.6%;
   }
   #sidebar {
-    padding-top: 0;
+    margin-left: 10px;
   }
   #sidebar .nav {
     width: 99%;
@@ -153,6 +353,11 @@ body > .container {
   }
   #sidebar .nav a.error::after {
     right: 3px;
+  }
+  #home-link {
+    position: absolute;
+    right: 5%;
+    top: 0;
   }
 }
 
@@ -193,6 +398,9 @@ section.thumbnail {
   display: block;
   box-sizing: border-box;
   margin: 0;
+  border: 1px solid #e2e1dd;
+  border-radius: 2px;
+  box-shadow: none;
 }
 
 section.thumbnail .row {
@@ -215,55 +423,8 @@ section.thumbnail .row.center-block {
 
 #sidebar .nav a .label i {
   font-style: normal;
+  font-weight: 500;
 }
-
-.homeButton {
-  display: block;
-  box-sizing: border-box;
-  cursor: pointer;
-}
-
-.homeButton .title {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  padding: 15px 10px;
-  box-sizing: border-box;
-  height: auto;
-  color: black;
-}
-
-.homeButton .title:hover {
-  opacity: 0.6;
-}
-
-.issue a {
-  text-decoration: none;
-}
-
-ul.issue {
-  list-style: disc inside none;
-}
-
-@media screen and (max-width: 768px) {
-  .homeButton .title {
-    padding: 20px 15px;
-  }
-  #sidebar .nav a {
-    overflow: hidden;
-    height: 40px;
-  }
-  #sidebar .nav a .label {
-    font-size: 13px;
-    width: 18px;
-    padding-left: 0;
-    padding-right: 0;
-  }
-  #sidebar .nav a .label i {
-    display: none;
-  }
-}
-
 /* sidebar icon styles */
 
 .sk-cube-grid {
@@ -350,8 +511,31 @@ ul.issue {
           animation: none; 
 }
 
-.home-link {
-  margin-top: 10px;
+.navbar-header {
+  position: relative;
+}
+
+#home-link {
+  display: block;
+  background: #e3e5e6;
+  padding: 2px 8px 2px 6px;
+  color: #555;
+  text-transform: uppercase;
+  font-size: 11px;
+  line-height: 18px;
+  width: 60px;
+}
+
+#home-link span {
+  font-size: 9px;
+  line-height: 18px;
+  padding-right: 5px;
+}
+
+#home-link:hover {
+  color: white;
+  text-decoration: none;
+  background: #999;
 }
 
 .ffButton {
@@ -369,14 +553,16 @@ ul.issue {
   min-width: 100px;
 }
 
+.label-danger,
 .ffButton.error {
   color: white;
-  background-color: #c9302c;
+  background-color: #df5a49;
 }
 
+.label-success,
 .ffButton.success {
   color: white;
-  background-color: #5cb85c;
+  background-color: #45b29d;
 }
 
 .ffButton:hover {

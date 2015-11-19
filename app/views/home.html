@@ -1,30 +1,29 @@
             <div class="center">
-                <section class="thumbnail">
+                <header id="home-intro">
+                    <h1>Troubleshooting</h1>
+                    <p>Troubleshoot the most common problems here</p>
+                </header>
+                <section id="home-content" class="thumbnail">
                     <div class="row center-block">
-                        <div class="col-xs-12">
-                            <img src ="./images/troubleshooting_icon.png" class="center-block">
-                            <div class="caption">
-                                <h1>Troubleshooting</h1>
-                                <p>This troubleshooter helps you to fix some of the common issues that you might encounter using Wakanda.</p>
+                        <div class="col-xs-12 text-center">
+                            <h2>What do you want to build?</h2>
+                        </div>
+                        <div class="col-xs-12 col-md-8 col-md-offset-2">
+                            <div id="homeButtonRow" class="row">
+                                <div ng-click="goToStep(key)" class="{{value.nickname}} col-xs-6" ng-repeat="(key, value) in data.applications">
+                                    <div class="homeButton">
+                                        <figure>&nbps;</figure>
+                                        <span>{{value.name}}</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row center-block">
-                        <div class="col-xs-12">
-                            <h4>For which OS do you want to build your Web app?</h4>
+                        <div class="col-xs-12 text-center">
+                            <h2>Do you need help with a specific issue?</h2>
                         </div>
-                        <div ng-click="goToStep(key)" class="{{value.nickname}} homeButton col-xs-12" ng-repeat="(key, value) in data.applications">
-                            <div class="title">
-                                <img style="margin-right: 7px" ng-src="./{{value.icon}}">
-                                <strong>{{value.name}}</strong>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row center-block">
-                        <div class="col-xs-12">
-                            <h4>Do you need help with a specific issue?</h4>
-                        </div>
-                        <ul class="issue col-xs-12">
+                        <ul class="issue col-xs-12 col-md-8 col-md-offset-2">
                             <li ng-repeat="(key, value) in data.issues">
                                 <a href="#/issues/{{key}}" title="{{value.title}}">{{value.title}}</a>
                             </li>

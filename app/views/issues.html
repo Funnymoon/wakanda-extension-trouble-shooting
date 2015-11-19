@@ -6,6 +6,7 @@
       <div class="navbar-header" ng-init="toggle = false;">
         <a class="navbar-brand" >{{ currentIssue.title }}</a>
       </div>
+      <a id="home-link" href="#/home" class="navbar-text navbar-right"><span>◀</span>Home</a>
     </div>
   </div>
 
@@ -21,9 +22,6 @@
         <div class="step-description" ng-repeat="description in currentIssue.description" ng-bind-html="description"></div>
       </section><!-- /.col-xs-12 main -->
       <div id="support-label" class="col-xs-12 text-right">If you encounter any difficulties, please contact <a href="mailto:support@wakanda.io" target="_blank">support@wakanda.io</a>.</div>
-      <div class="home-link col-xs-12">
-        <a href="#/home">Home</a>
-      </div>
     </div><!--/.row-->
   </div><!--/.container-->
 </div><!--/.page-container-->
