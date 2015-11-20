@@ -25,6 +25,16 @@ app.factory('DataFactory', ['$resource', function($resource) {
     });
 }]);
 
+app.sendAnalytics = function(pageUrl,pageTitle) {
+    if(typeof ga != 'undefined') {
+        ga('create', 'UA-29183282-2', 'http://troubleshooting.wakanda.io');
+        ga('set', 'checkProtocolTask', function(){ /* nothing */ });
+        ga('set', 'page', pageUrl);
+        ga('set', 'title', pageTitle);
+        ga('send', 'pageview',  pageUrl);
+    }
+};
+
 app.goToStep = function(appName, stepNumber, localOs) {
     var os = (navigator.userAgent.indexOf('Mac OS X') != -1) ? "mac" : "windows";
     var locationUrl = "#/steps/" + appName + "/" + (localOs ? localOs : os) + "/" + (stepNumber ? stepNumber : '0');

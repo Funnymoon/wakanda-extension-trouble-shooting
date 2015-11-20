@@ -1,14 +1,10 @@
 stepsChecks = [];
 
-app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
+app.controller('stepsCtrl', function($scope, $routeParams, DataFactory, $location) {
 
     $scope.os = (navigator.userAgent.indexOf('Mac OS X') != -1) ? "mac" : "windows";
 
     $scope.steps = [];
-
-    function activateMunchkin() {
-        Munchkin.munchkinFunction('clickLink', { href: window.location.hash });
-    }
 
     $scope.checkStep = function() {
         $('.step .stepCheck[data-id="'+$scope.currentStepPosition+'"]').removeClass('locked');
@@ -58,9 +54,7 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
         $scope.currentStep = $scope.steps[$scope.currentStepPosition];
 
         checkDependencies($scope.steps);
-        setTimeout(function(){
-            activateMunchkin();
-        },500);
+        app.sendAnalytics(window.location.hash,'tutorial: '+$scope.currentStep.name);
     });
 
     $scope.goPrevStep = function() {
@@ -77,6 +71,11 @@ app.controller('stepsCtrl', function($scope, $routeParams, DataFactory) {
         $scope.currentStep = $scope.steps[stepNumber];
         checkDependencies([$scope.currentStep]);
         $('.step .stepCheck').removeClass('success').removeClass('error').html('Check');
+
+        var currentHashArray = window.location.hash.split('/');
+        currentHashArray.pop();
+        $scope.currentHash = currentHashArray.join('/') + '/' + $scope.currentStepPosition;
+        app.sendAnalytics($scope.currentHash,'tutorial: '+$scope.currentStep.name);
     };
 });
 

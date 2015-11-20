@@ -12,9 +12,10 @@ app.controller('homeCtrl', function($scope, DataFactory, $location) {
                 if (currentType.nickname == typeName && currentType.os == $scope.os) {
                     studio.extension.storage.setItem("nickname", null);
                     $location.path("/steps/" + currentType.nickname + "/"+ $scope.appType.os + "/0");
-                    Munchkin.munchkinFunction('clickLink', { href: "/steps/" + currentType.nickname + "/" + $scope.appType.os + "/0"});
                 }
             }
+        } else {
+            app.sendAnalytics(window.location.hash,'Home');
         }
     });
     
