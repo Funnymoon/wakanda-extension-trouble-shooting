@@ -132,7 +132,7 @@
     },{
         "title": "The iOS emulator displays a blank white screen (OS X El Capitan and Xcode 7)",
         "description": [
-            "<h4>Solution</h4><p>Launch Xcode, open its Preferences then download the 'iOS 8.4 Simulator' component from the Downloads tab.</p><p>Once done, open the Devices window of Xcode then delete all the '9.0' simulators.</p><p>Additionally, you may need to run the following command within your mobile application folder:</p><div><pre><code>ionic state reset</code></pre></div>"
+            "<h4>Solution</h4><p>Wakanda Studio looks for your dependencies in your operating system's default folder. If you installed NPM, Node, or other software in a custom location, add the binary folder location in your Wakanda configuration:</p><ol><li>Open the <strong>Wakanda Studio Preferences</strong> panel.</li><li>In the <strong>General</strong> section, go to the <strong>Environment variables</strong> section.</li><li>Insert the binary locations (without the binary name at the end) separated by a new line in the PATH field:<div><pre><code>/my/custom/path/one\n/my/custom/path/two</code></pre></div></li><li>Click on the <b>Check</b> button to check the dependencies in the Console.</li></ol>"
         ]        
     }]
 }
