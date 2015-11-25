@@ -130,7 +130,7 @@
             "<h4>Additional Information</h4><p>It could also be necessary to point the npm registry to the http source:</p><div><pre><code>npm config set registry \"http://registry.npmjs.org\"\nnpm config set strict-ssl false</code></pre></div>"
         ]        
     },{
-        "title": "The iOS emulator displays a blank white screen (OS X El Capitan and Xcode 7)",
+        "title": "Wakanda Studio has not detected my dependencies (node, npm, ionic, ...)",
         "description": [
             "<h4>Solution</h4><p>Wakanda Studio looks for your dependencies in your operating system's default folder. If you installed NPM, Node, or other software in a custom location, add the binary folder location in your Wakanda configuration:</p><ol><li>Open the <strong>Wakanda Studio Preferences</strong> panel.</li><li>In the <strong>General</strong> section, go to the <strong>Environment variables</strong> section.</li><li>Insert the binary locations (without the binary name at the end) separated by a new line in the PATH field:<div><pre><code>/my/custom/path/one\n/my/custom/path/two</code></pre></div></li><li>Click on the <b>Check</b> button to check the dependencies in the Console.</li></ol>"
         ]        
