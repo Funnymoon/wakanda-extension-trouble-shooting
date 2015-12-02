@@ -14,7 +14,7 @@
     <!-- sidebar -->
     <div class="col-xs-4 sidebar-offcanvas" id="sidebar" role="navigation" >
       <ul class="nav">
-        <li ng-repeat = "(key,step) in steps" ng-class="{active : currentStep == step}" ><a data-id="{{key}}" ng-click = "setCurrentStep(key)">{{ ( steps.length > 1 ) ? (key+1) + ") " : "" }}{{step.name}} <span ng-hide="{{ step.command.length < 1 }}" class="label pull-right"></span>
+        <li ng-repeat = "(key,step) in steps" ng-class="{active : currentStep == step}" ><a data-id="{{key}}" ng-click = "setCurrentStep(key)">{{ ( steps.length > 1 ) ? (key+1) + ". " : "" }}{{step.name}} <span ng-hide="{{ step.command.length < 1 }}" class="label pull-right"></span>
         </a></li>
       </ul>
     </div>
