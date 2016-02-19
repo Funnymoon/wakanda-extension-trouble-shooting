@@ -4,7 +4,7 @@ body {
   min-width: 450px;
   font-size: 13px;
   line-height: 18px;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Open Sans', 'Roboto', 'Helvetica', 'Arial', sans-serif;
 }
 
 body > .container {
