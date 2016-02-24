@@ -52,7 +52,7 @@ actions.getTroubleshootingDependencyCheck = function getTroubleshootingDependenc
 }
 
 actions.goToTroubleShootingStep = function goToTroubleShootingStep(message) {
-    if (message.params.nickname && message.params.step) {
+    if (message.params.nickname && typeof message.params.step !== 'undefined') {
         studio.extension.storage.setItem("nickname", message.params.nickname);
         studio.extension.storage.setItem("step", message.params.step);
         studio.sendExtensionWebZoneCommand('wakanda-extension-trouble-shooting','(function(){ window.location.reload(); })');
