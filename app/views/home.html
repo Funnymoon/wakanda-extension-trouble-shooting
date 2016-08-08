@@ -1,25 +1,33 @@
             <div class="center">
                 <header id="home-intro">
-                    <h1>Mobile Troubleshooting</h1>
+                    <h1>Troubleshooting</h1>
                     <p>Troubleshoot the most common problems here</p>
                 </header>
                 <section id="home-content" class="thumbnail">
-                    <div class="row center-block">
+                    <div class="row center-block" ng-if="!data.troubleshooting && !data.issues">
+                        <div ng-if="!currentSolutionProjects" class="col-xs-12 text-center margin-bottom">
+                            <h5>Open a solution to get access to troubleshooting information</h5>
+                        </div>
+                        <div ng-if="currentSolutionProjects" class="col-xs-12 text-center margin-bottom">
+                            <h5>No troubleshooting information are available for this solution</h5>
+                        </div>
+                    </div>
+                    <div class="row center-block" ng-if="data.troubleshooting">
                         <div class="col-xs-12 text-center">
                             <h2>What do you want to build?</h2>
                         </div>
                         <div class="col-xs-12 col-sm-10 col-lg-8 col-lg-offset-2 col-sm-offset-1">
                             <div id="homeButtonRow" class="row">
-                                <div ng-click="goToStep(key)" class="{{value.nickname}} col-xs-6" ng-repeat="(key, value) in data.applications">
+                                <div title="{{value.description}}" ng-click="goToStep(key)" class="troubleshooting col-xs-6" ng-repeat="(key, value) in data.troubleshooting">
                                     <div class="homeButton">
-                                        <figure>&nbps;</figure>
+                                        <figure style="background-image: url('{{value.icon}}');">&nbps;</figure>
                                         <span>{{value.name}}</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row center-block">
+                    <div class="row center-block" ng-if="data.issues">
                         <div class="col-xs-12 text-center">
                             <h2>Do you need help with a specific issue?</h2>
                         </div>

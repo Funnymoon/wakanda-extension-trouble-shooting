@@ -7,14 +7,6 @@ function getPaths() {
     if(os.isWindows) {
         return paths;
     }
-    
-    // default paths
-    paths = paths.concat([
-        '/usr/local/bin',
-        '/usr/libexec/java_home/bin',
-        '/usr/local/opt/android-sdk/platform-tools',
-        '/usr/local/opt/android-sdk/tools'
-    ]);
 
     // user preferences paths
     var environmentVariablePath = studio.getPreferences('environmentVariablePath') || '';
@@ -24,25 +16,31 @@ function getPaths() {
         }
     });
 
+    // default paths
+    paths = paths.concat([
+        '/usr/local/bin',
+        '/usr/libexec/java_home/bin',
+        '/usr/local/opt/android-sdk/platform-tools',
+        '/usr/local/opt/android-sdk/tools'
+    ]);
+
     return paths;
 }
-
-
 
 function getMessageString(options) {
     "use strict";
 
-	var message = {
-		msg: options.message,
-		type: options.type || null,
-		category: options.category || 'env'
+    var message = {
+        msg: options.message,
+        type: options.type || null,
+        category: options.category || 'env'
     };
-	return 'wakanda-extension-mobile-console.append.' + Base64.encode(JSON.stringify(message));
+    return 'wakanda-extension-mobile-console.append.' + Base64.encode(JSON.stringify(message));
 }
 
 function printConsole(obj) {
     "use strict";
-    
+
     studio.sendCommand(getMessageString(obj));
 }
 
@@ -81,25 +79,37 @@ function stringifyFunc(obj) {
     });
 }
 
-function getAvailablePort() {
+function getAvailablePort(startingPort) {
     "use strict";
 
     var res,
+        port = startingPort || 8100,
         ports = [],
         netstatOutput = shell.exec('netstat -an -p tcp'),
         ipList = studio.getLocalIpAddresses().split(';'),
-        ips = ipList.map(function(ip) { return '(' + ip.replace(/\./, '\\.') + ')'; }).join('|'),
-        regex = new RegExp('(' + ips + ')' + '\\.(\\d+)', 'g');
+        ips = [],
+        regexpString = '';
+
+    if (studio.os.isWindows) {
+        ipList.push('0.0.0.0');
+        ips = ipList.map(function(ip) { return '(' + ip.replace(/\./g, '\\.') + ')'; }).join('|');
+        regexpString = '(' + ips + ')' + '\\:(\\d+)';
+    } else {
+        ips = ipList.map(function(ip) { return '(' + ip.replace(/\./g, '\\.') + ')'; }).join('|');
+        regexpString = '((\\*)|' + ips + ')' + '\\.(\\d+)';
+    }
+
+    var regex = new RegExp(regexpString, 'g');
 
     while(res = regex.exec(netstatOutput)) {
         ports.push(parseFloat(res.pop(), 10));
     }
-    var port = 8100;
+
     while(true) {
         if(ports.indexOf(port) === -1) {
             break;
         }
-        port ++;
+        port++;
     }
     return port;
 }
@@ -117,6 +127,17 @@ function killProcessPid(pid) {
     }
 }
 
+function killProcessAndChild(pid) {
+    if(! pid) {
+        return;
+    }
+    try {
+        return executeSyncCmd({ cmd: (os.isWindows ? 'taskkill /PID ' : 'kill -TERM -') + pid });
+    } catch(e) {
+        printConsole({ msg: e.message, type: 'ERROR' });
+    }
+}
+
 function wrapCommand(command) {
     var paths = os.isMac ? getPaths().join(':') : undefined;
     if(os.isMac && paths) {
@@ -129,16 +150,15 @@ function executeAsyncCmd(command) {
     "use strict";
 
     var consoleSilentMode = command.options && command.options.consoleSilentMode;
-    var cmd = command.cmd
     if(! consoleSilentMode) {
         printConsole({
             message: command.path ? (command.path + ' ') + command.cmd : command.cmd,
             type: 'COMMAND'
         });
     }
-    
+
     var worker = shell.create(wrapCommand(command.cmd), command.path);
-    
+
     worker.onmessage = function(msg) {
         if(! consoleSilentMode) {
             printConsole({
@@ -146,12 +166,12 @@ function executeAsyncCmd(command) {
                 type: 'OUTPUT'
             });
         }
-    
+
         if(command.onmessage) {
             command.onmessage(msg);
         }
     };
-    
+
     worker.onerror = function(msg) {
         if(! consoleSilentMode) {
             printConsole({
@@ -164,7 +184,7 @@ function executeAsyncCmd(command) {
             command.onerror(msg);
         }
     };
-    
+
     worker.onterminated = function(msg) {
         if(! consoleSilentMode && ! (typeof(msg) === 'object'  && msg.type === 'terminate')) {
             printConsole({
@@ -173,7 +193,7 @@ function executeAsyncCmd(command) {
             });
         }
         if(command.onterminated) {
-            command.onterminated(msg);    
+            command.onterminated(msg);
         }
     };
 
@@ -207,7 +227,7 @@ function executeSyncCmd(command) {
     return output;
 }
 
-/* 
+/*
  * studio manipulating storage
 */
 function getStorage(name) {
@@ -218,7 +238,7 @@ function getStorage(name) {
 
 function setStorage(params) {
     "use strict";
-    
+
     var storage = JSON.parse(studio.extension.storage.getItem(params.name) || '{}');
     var updated = params.key === undefined ? storage : storage[params.key];
 
@@ -257,22 +277,31 @@ function getConnectedDevices() {
         try {
             output = executeSyncCmd({ cmd: 'ioreg -w -p IOUSB | grep -w iPhone' });
             devices.ios.connected = /iPhone/.test(output);
-            devices.ios.push('iPhone');
         } catch(e) {
             studio.log(e.message);
         }
+
+        if(! devices.ios.connected) {
+            try {
+                output = executeSyncCmd({ cmd: 'ioreg -w -p IOUSB | grep -w iPad' });
+                devices.ios.connected = /iPad/.test(output);
+            } catch(e) {
+                studio.log(e.message);
+            }
+        }
+        devices.ios.push('iOS');
     }
 
     // check for the android device
     try {
         output = executeSyncCmd( {cmd: 'adb devices'} );
-     
+
         var regex = /^(\w+)( |\t)+device$/;
 
         output.split(/\n|\n\r/).forEach(function(row) {
             var match = regex.exec(row.trim());
             if(match) {
-                devices.android.push({ id: match[1] });      
+                devices.android.push({ id: match[1] });
             }
         });
 
@@ -284,18 +313,51 @@ function getConnectedDevices() {
     return devices;
 }
 
-function getWakandaServerProjectPort() {
-   // parse Wakanda project settings and get port
-    var solutionPath = studio.currentSolution.getSolutionFile().parent.parent.path,
-        projectName = getSelectedProjectName(),
-        regex = /<http .* port="(\d+)"/m;
-
-    var settings = File(solutionPath + '/' + projectName + '/backend/settings.waSettings').toString();
-    var match = regex.exec(settings);
-    
-    return match.length > 1 ? match[1] : 8081;
+function isOnline() {
+    try {
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "http://www.msftncsi.com/ncsi.txt", false);
+        xhr.send();
+        return true;
+    } catch(e) {
+        return false;
+    };
 }
 
+function checkInstalledNodeModules() {
+    var file = File(getWebProjectPath() + '/package.json');
+    if(! file.exists) {
+        return false;
+    }
+
+    var packageJson = JSON.parse(file.toString());
+    var dependencies = Object.keys(packageJson.devDependencies || {});
+    dependencies = dependencies.concat(Object.keys(packageJson.dependencies || {}));
+
+    // installed modules
+    var output = executeSyncCmd({ cmd: 'npm list --depth=0', path: getWebProjectPath() });
+    var modules = [];
+    output.split(/\n|\n\r/).forEach(function(module) {
+        var arr = /-- (.+)@(.+)$/.exec(module);
+        if(arr) {
+            modules.push(arr[1]);
+        }
+    });
+
+    return ! dependencies.some(function(module) {
+        return modules.indexOf(module) === -1;
+    });
+}
+
+function isArray(object) {
+    if (typeof object === 'undefined') {
+        return false;
+    }
+    if (Object.prototype.toString.call( object ) === '[object Array]') {
+        return true;
+    }
+    return false;
+}
 
 exports.printConsole = printConsole;
 exports.getMessageString = getMessageString;
@@ -306,9 +368,12 @@ exports.getAvailablePort = getAvailablePort;
 exports.executeAsyncCmd = executeAsyncCmd;
 exports.executeSyncCmd = executeSyncCmd;
 exports.killProcessPid = killProcessPid;
+exports.killProcessAndChild = killProcessAndChild;
 exports.getStorage = getStorage;
 exports.setStorage = setStorage;
 exports.getConnectedDevices = getConnectedDevices;
 exports.getMobileProjectPath = getMobileProjectPath;
 exports.getWebProjectPath = getWebProjectPath;
-exports.getWakandaServerProjectPort = getWakandaServerProjectPort;
+exports.isOnline = isOnline;
+exports.isArray = isArray;
+exports.checkInstalledNodeModules = checkInstalledNodeModules;

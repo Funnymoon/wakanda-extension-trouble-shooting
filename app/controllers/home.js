@@ -2,8 +2,9 @@ app.controller('homeCtrl', function($scope, DataFactory, $location) {
     $scope.data = {};
     $scope.os = (navigator.userAgent.indexOf('Mac OS X') != -1) ? "mac" : "windows";
     $scope.location = $location;
+    $scope.currentSolutionProjects = studio.currentSolution.getProjects();
 
-    DataFactory.all().$promise.then(function(response){
+    DataFactory.all().then(function(response){
         $scope.data = response;
         var typeName = studio.extension.storage.getItem("nickname");
         if (typeName) {

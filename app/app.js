@@ -17,12 +17,21 @@ app.config(function($routeProvider, $locationProvider) {
     
 });
 
-app.factory('DataFactory', ['$resource', function($resource) {
-    return $resource('./data.json', null, {
-        'all': {
-            method: 'GET'
+app.factory('DataFactory', ['$resource', '$q', function($resource, $q) {
+    return {
+        all: function(){
+            return $q(function(resolve, reject) {
+                studio.sendCommand('wakanda-extension-trouble-shooting.storeDependenciesStatus');
+                try {
+                    var solutionConfigJson = studio.extension.storage.getItem('solution-config');
+                    var solutionConfig = JSON.parse(solutionConfigJson);
+                    resolve(solutionConfig);
+                } catch (err) {
+                    reject(err);
+                }
+            });
         }
-    });
+    };
 }]);
 
 app.sendAnalytics = function(pageUrl,pageTitle) {

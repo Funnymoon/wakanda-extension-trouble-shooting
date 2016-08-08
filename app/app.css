@@ -20,6 +20,10 @@ a:hover {
   text-decoration: none;
 }
 
+h5 {
+  line-height: 140%;
+}
+
 #home-intro {
   background: url('../images/bg.png') no-repeat center center;
   background-size: auto 100%;
@@ -102,45 +106,38 @@ a:hover {
   margin-bottom: 0;
 }
 
-.ios-app .homeButton {
+.troubleshooting .homeButton {
   background: #4e4e4e;
   margin-right: 0px;
 }
 
-.ios-app .homeButton figure {
-  background: url('../images/ios.png');
+.troubleshooting .homeButton figure {
   height: 91px;
   width: 91px;
   text-indent: -9999px;
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
-.ios-app .homeButton:hover figure {
-  background: url('../images/iosHover.png');
+.troubleshooting .homeButton:hover figure {
+  opacity: 1;
 }
 
-.android-app .homeButton {
+.troubleshooting:nth-child(even) .homeButton {
   background: #45b29d;
-  margin-left: 0px;
-  text-transform: uppercase;
 }
 
-.android-app .homeButton figure {
-  background: url('../images/android.png');
-  height: 93px;
-  width: 79px;
-  text-indent: -9999px;  
-}
-
-.android-app .homeButton:hover figure {
-  background: url('../images/androidHover.png');
-}
-
-.android-app .homeButton span {
+.troubleshooting:nth-child(even) .homeButton span {
   color: #b7efe4;
 }
 
 .homeButton:hover span {
   color: white;
+}
+
+.margin-bottom {
+  margin-bottom: 30px;
 }
 
 #homeButtonRow {

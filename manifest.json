@@ -1,18 +1,33 @@
 {
     "extension": {
         "name": "wakanda-extension-trouble-shooting",
-        "version": "1.0.0",
+        "version": "1.1.0",
         "description": "An internal extension to help with troubleshooting in Wakanda Studio.",
         "icon": "welcome.png",
         "actions": [{
             "name": "getTroubleshootingPage",
             "title": "Troubleshooting"
         }, {
+            "name": "storeDependenciesStatus",
+            "title": "storeDependenciesStatus"
+        }, {
             "name": "goToTroubleShootingStep",
             "title": "goToTroubleShootingStep"
         }, {
             "name": "getTroubleshootingDependencyCheck",
             "title": "getTroubleshootingDependencyCheck"
+        }, {
+            "name": "checkDependencies",
+            "title": "checkDependencies",
+            "trigger": [ { "event": "onSolutionOpened" } ]
+        }, {
+            "name": "reloadTroubleshootingPage",
+            "title": "reloadTroubleshootingPage",
+            "trigger": [ { "event": "onSolutionOpened" }, { "event": "onSolutionClosed" } ]
+        }, {
+            "name": "resetSolutionConfig",
+            "title": "resetSolutionConfig",
+            "trigger": [ { "event": "onSolutionBeforeClosing" } ]
         }],
         "lifetime": "application_lifetime"
     }

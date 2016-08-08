@@ -4,7 +4,7 @@ app.controller('issuesCtrl', function($scope, $routeParams, DataFactory) {
 
     $scope.steps = [];
 
-    DataFactory.all().$promise.then(function(response) {
+    DataFactory.all().then(function(response) {
         $scope.currentOs = $routeParams.os;
         $scope.issues = response.issues;
         $scope.currentIssue = $scope.issues[$routeParams.id];
