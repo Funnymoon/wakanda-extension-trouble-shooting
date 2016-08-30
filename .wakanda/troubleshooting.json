@@ -1,0 +1,37 @@
+{
+  "issues": [
+    {
+      "title": "Wakanda Studio has not detected my dependencies (node, npm, ionic, ...)",
+      "description": [
+        "<h4>Solution</h4><p>Wakanda Studio looks for your dependencies in your operating system's default folder. If you installed NPM, Node, or other software in a custom location, add the binary folder location in your Wakanda configuration:</p><ol><li>Open Wakanda Studio's <strong>Preferences</strong>.</li><li>In the <strong>General</strong> panel, go to the <strong>Environment variables</strong> section.</li><li>Insert the binary locations (without the binary name at the end) separated by a new line in the PATH field:<div><pre><code>/my/custom/path/one\n/my/custom/path/two</code></pre></div></li><li>Click on the <b>Check</b> button to check the dependencies in the Console.</li></ol>"
+      ]
+    },
+    {
+      "title": "While running my application I could not log-in inside Wakanda Studio",
+      "description": [
+        "<h4>Solution</h4><p>If are able to log-in on a browser but you have troubles inside Wakanda Studio, try clicking these URLs <a href=\"http://127.0.0.1:8081/\">(1)</a> and <a href=\"http://127.0.0.1:8081/app/\">(2)</a> and then try re-opening all the application tabs.</p>"
+      ]
+    },
+    {
+      "title": "The platform I'm looking for is not listed.",
+      "description": [
+        "<p>We support only iOS and Android for native mobile app development. For other platforms, like Windows Phone, you can create a web application with Wakanda and AngularJS.</p><p>Please contact us at <a target=\"_blank\" href=\"mailto:support@wakanda.io\">support@wakanda.io</a> and let us know which platform you need. We'll send you an email as soon an update is available.</p>"
+      ]
+    },
+    {
+      "title": "npm returns a red error that starts with 'npm ERR! Error: EACCES...'.",
+      "description": [
+        "<h4>Solution</h4><p>Try running the same command prefixed by 'sudo'</p>",
+        "<h4>Example</h4><p>Instead of</p><div><pre><code>npm install -g ionic</code></pre></div><p>try</p><div><pre><code>sudo npm install -g ionic</code></pre></div>"
+      ]
+    },
+    {
+      "title": "npm returns a red error that starts with 'npm ERR! network connect ETIMEDOUT...'.",
+      "description": [
+        "<h4>Solution</h4><p>In most cases, you might be behind a proxy or have bad network settings.<br>If you are behind a proxy, please make sure that the npm 'proxy' config is set properly.</p>",
+        "<h4>Example</h4><p>In the Terminal run</p><div><pre><code>npm config set proxy http:<b>//proxy.company.com:8080</b>\nnpm config set https-proxy http:<b>//proxy.company.com:8080</b></code></pre></div><p>If you are working behind a proxy in a \"windows\" domain, add the domain name into the proxy url:</p><div><pre><code>npm config set proxy http:<b>//domain%5Cuser:password@proxy.company.com:8080</b>\nnpm config set https-proxy http:<b>//domain%5Cuser:password@proxy.company.com:8080</b></code></pre></div><p>You need to encode the backslash as an http uri string: <strong>%5C</strong></p>",
+        "<h4>Additional Information</h4><p>It could also be necessary to point the npm registry to the http source:</p><div><pre><code>npm config set registry \"http://registry.npmjs.org\"\nnpm config set strict-ssl false</code></pre></div>"
+      ]
+    }
+  ]
+}
